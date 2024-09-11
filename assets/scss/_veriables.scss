@@ -1,11 +1,15 @@
 //width main container
-$container: 1280;
+$container: 1320;
 
 :root {
 
     /*colors*/
-    --color-black: #252323;
+    --color-black: #030A16;
     --color-white: #ffffff;
+    --color-gray: #A6A6A6;
+    --color-blue: #1397D6;
+
+
 
     --color-transparent: transparent;
     --color-shadow: rgba(22, 28, 45, 0.05);
@@ -19,7 +23,7 @@ $container: 1280;
     /*border*/
 
     /*body*/
-    --font-family-base: "Montserat", serif;
+    --font-family-base: "AvenirNextCyr", serif;
 
     --container-width: #{$container}px;
     --container-padding-x: clamp(1rem, -0.333rem + 5.93vw, 5rem);
@@ -29,7 +33,7 @@ $container: 1280;
 
     /*button*/
     --input-height: 55px;
-    --button-height: 46px;
+    --button-height: 56px;
     --icon-button-height: 30px;
 
     --transition-duration: 0.3s;

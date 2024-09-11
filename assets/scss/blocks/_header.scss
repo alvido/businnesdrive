@@ -1,11 +1,12 @@
 .header {
-    position: relative;
-    padding: 20px 0;
-
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    padding: 24px 0;
+    color: var(--color-white);
+    background: var(--color-black);
 
     &.fixed {
         position: fixed;
@@ -13,6 +14,26 @@
         right: 0;
         top: 0;
         z-index: 2;
-        background: var(--color-white);
+    }
+
+    &__branding {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    & a {
+        @include flex-center;
+        gap: 16px;
+
+        @include hover {
+            color: var(--color-blue);
+        }
     }
 }

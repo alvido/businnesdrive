@@ -5,10 +5,10 @@
     }
 
     & img {
-        max-width: 90px;
+        max-width: 80px;
 
         @include mobile {
-        max-width: 70px;
+        max-width: 50px;
         }
     }
 }

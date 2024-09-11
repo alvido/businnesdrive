@@ -1,6 +1,37 @@
 .footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
+    margin-top: auto;
+    padding-block: 64px 52px;
+    @include fluid-text(18, 16);
+
+    color: var(--color-white);
+    background: linear-gradient(0deg, #040D1A, #040D1A),
+        radial-gradient(32.69% 87.5% at 63.92% 95.99%, rgba(137, 137, 137, 0.2) 0%, rgba(137, 137, 137, 0) 100%);
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+
+    @include mobile {
+        padding-block: 48px;
+    }
+
+    & .wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+    }
+
+    & .column {
+        max-width: 400px;
+
+        & p {
+            color: var(--color-gray);
+        }
+    }
+
+    &__social {
+        flex-direction: column;
+
+        & svg {
+            color: var(--color-blue);
+        }
+    }
+
 }

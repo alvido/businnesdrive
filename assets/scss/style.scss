@@ -1,14 +1,15 @@
-@import 'normalize', 'fonts', 'veriables', 'mixins', 'media',  'utils', 'globals', 'animations';
+@import 'normalize', 'fonts', 'veriables', 'mixins', 'media', 'utils', 'globals', 'animations';
 
-@import 'blocks/button',
-'blocks/button-burger',
-'blocks/form',
-'blocks/select',
-'blocks/swiper',
-
-'blocks/header',
+@import 'blocks/header',
 'blocks/logo',
-'blocks/navigation',
+'blocks/button',
+'blocks/button-burger',
+// 'blocks/form',
+// 'blocks/select',
+// 'blocks/swiper',
+
+
+// 'blocks/navigation',
 'blocks/hero',
 'blocks/about',
 

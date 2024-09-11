@@ -1,3 +1,28 @@
 .hero {
+    position: relative;
+    color: var(--color-white);
+    background: var(--color-black) no-repeat center / cover;
+
+    &__wrapper {
+        height: 100vh;
+        min-height: 600px;
+        @include flex-center;
+        flex-direction: column;
+
+        & h1 {
+            max-width: 950px;
+        }
+
+        & .button {
+            margin-top: 32px;
+        }
+    }
+
+    & #liveChat {
+        position: absolute;
+        right: 40px;
+        bottom: 40px;
+        padding: 0;
+    }
 
 }
