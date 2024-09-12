@@ -1,11 +1,12 @@
 .hero {
-    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
     color: var(--color-white);
     background: var(--color-black) no-repeat center / cover;
 
     &__wrapper {
-        height: 100vh;
-        min-height: 600px;
+        margin: auto;
         @include flex-center;
         flex-direction: column;
 
@@ -15,14 +16,10 @@
 
         & .button {
             margin-top: 32px;
+
+            @include phone {
+                width: 100%;
+            }
         }
     }
-
-    & #liveChat {
-        position: absolute;
-        right: 40px;
-        bottom: 40px;
-        padding: 0;
-    }
-
 }

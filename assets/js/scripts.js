@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let burgerButton = document.getElementById("burgerButton");
   let navigation = document.getElementById("site-navigation");
   let body = document.querySelector("body");
-  // let links = document.querySelectorAll(".navigation__link");
 
   if (burgerButton) {
     burgerButton.addEventListener("click", function (e) {
@@ -15,13 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // links.forEach((link) => {
-  //   link.addEventListener("click", function (e) {
-  //     burgerButton.classList.remove("burger--active");
-  //     navigation.classList.remove("navigation--active");
-  //     console.log("link", link);
-  //   });
-  // });
+  // Обработчик клика по документу
+  document.addEventListener("click", function (e) {
+    // Проверяем, если клик произошел вне бургер-кнопки и навигации
+    if (!navigation.contains(e.target) && !burgerButton.contains(e.target)) {
+      // Убираем активные классы, если они были добавлены
+      burgerButton.classList.remove("burger--active");
+      navigation.classList.remove("navigation--active");
+      body.classList.remove("lock");
+    }
+  });
+
 });
 //
 

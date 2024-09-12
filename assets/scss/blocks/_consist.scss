@@ -2,4 +2,12 @@
     & .decor-bottom {
         margin-top: 16px;
     }
+
+    & .swiper {
+        margin-top: clamp(3.5rem, 2.62rem + 3.76vw, 6rem);
+
+        &-slide {
+            display: flex;
+        }
+    }
 }

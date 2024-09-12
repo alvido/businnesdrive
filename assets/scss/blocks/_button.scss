@@ -18,8 +18,26 @@
     background: var(--color-blue);
     border: 2px solid var(--color-blue);
 
+    @include phone {
+        width: 100%;
+    }
+
     @include hover {
         color: var(--color-blue);
         background: var(--color-white);
+    }
+
+    &-chat {
+        @include squere(56px);
+        position: fixed;
+        right: 40px;
+        bottom: 40px;
+        padding: 0;
+        z-index: 2;
+
+        @include phone {
+            right: 20px;
+            bottom: 20px;
+        }
     }
 }

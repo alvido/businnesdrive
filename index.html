@@ -15,7 +15,10 @@
         <header id="masthead" class="header">
             <div class="header__branding container">
                 <a class="header__logo logo" href="" title="">
-                    <img src="assets/images/header/logo.png" alt="">
+                    <picture>
+                        <source srcset="assets/images/header/logo-min.svg" media="(max-width: 560px)">
+                        <img src="assets/images/header/logo.png" alt="Лого">
+                    </picture>
                 </a>
                 <div class="header__social social">
                     <a href="" class="" target="_blank">
@@ -85,17 +88,21 @@
                 <button class="burger" id="burgerButton" aria-controls="primary-menu" aria-expanded="false">
                     <span></span>
                 </button>
-
             </div><!-- .site-branding -->
-
             <nav id="site-navigation" class="header__navigation navigation">
                 <ul class="navigation__list">
-                    <li><a href="#">Ссылка</a></li>
-                    <li><a href="#">Ссылка</a></li>
-                    <li><a href="#">Ссылка</a></li>
-                    <li><a href="#">Ссылка</a></li>
-                    <li><a href="#">Ссылка</a></li>
+                    <li><a href="#">Послуги</a></li>
+                    <li><a href="#">Консультації</a></li>
+                    <li><a href="#">Консультанти</a></li>
+                    <li><a href="#">Документи</a></li>
+                    <li><a href="#">Вакансії</a></li>
+                    <li><a href="#">Про нас</a></li>
                 </ul>
+                <div class="lang">
+                    <a href="#" class="active">uk</a>
+                    <a href="#" class="">en</a>
+                    <a href="#" class="">ru</a>
+                </div>
             </nav><!-- #site-navigation -->
         </header><!-- #masthead -->
 
@@ -105,7 +112,7 @@
                     <h1>Легко і просто управляйте своїм бізнесом та підвищуйте продажі з <span>"consultant"</span></h1>
                     <a href="#" class="button">Дізнатися більше</a>
                 </div>
-                <button class="button" id="liveChat">
+                <button class="button button-chat" id="liveChat">
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_1_651)">
                             <path
@@ -205,43 +212,57 @@
                     <div class="swiper" id="current">
                         <ul class="swiper-wrapper">
                             <li class="swiper-slide">
+                                <img src="assets/images/crm.png" alt="">
                                 <div class="slide-content">
-                                    <p class="small">
-                                        1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    <h3>Модуль Підтримки</h3>
+                                    <p>
+                                        Цілком природно, що під час впровадження або в процесі роботи можуть виникати
+                                        питання. Наша служба підтримки завжди на зв’язку, готова допомогти у будь-який
+                                        момент. Ми створили спеціальний модуль для обробки звернень, де ви можете
+                                        відстежувати, як швидко наші спеціалісти вирішують ваші запити
                                     </p>
                                 </div>
                             </li>
                             <li class="swiper-slide">
+                                <img src="assets/images/crm.png" alt="">
                                 <div class="slide-content">
-                                    <p class="small">
-                                        1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    <h3>Модуль Підтримки</h3>
+                                    <p>
+                                        Цілком природно, що під час впровадження або в процесі роботи можуть виникати
+                                        питання. Наша служба підтримки завжди на зв’язку, готова допомогти у будь-який
+                                        момент. Ми створили спеціальний модуль для обробки звернень, де ви можете
+                                        відстежувати, як швидко наші спеціалісти вирішують ваші запити
                                     </p>
                                 </div>
                             </li>
                             <li class="swiper-slide">
+                                <img src="assets/images/crm.png" alt="">
                                 <div class="slide-content">
-                                    <p class="small">
-                                        1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="swiper-slide">
-                                <div class="slide-content">
-                                    <p class="small">
-                                        1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    <h3>Модуль Підтримки</h3>
+                                    <p>
+                                        Цілком природно, що під час впровадження або в процесі роботи можуть виникати
+                                        питання. Наша служба підтримки завжди на зв’язку, готова допомогти у будь-який
+                                        момент. Ми створили спеціальний модуль для обробки звернень, де ви можете
+                                        відстежувати, як швидко наші спеціалісти вирішують ваші запити
                                     </p>
                                 </div>
                             </li>
                         </ul>
                     </div>
+                </div>
+            </section>
+            <section class="about dark home">
+                <div class="container">
+                    <div class="wrapper">
+                        <h2 class="decor-left">Про компанію</h2>
+                        <div class="info">
+                            <p>
+                                Наша команда більше 5 років спеціалізується на збільшенні продажів та впровадженні програмного забезпечення в бізнес 
+                            </p>
+                            <a href="about.html" class="button">дізнатися більше</a>
+                        </div>
+                    </div>
+                    <img src="assets/images/company.png" alt="">
                 </div>
             </section>
         </main>

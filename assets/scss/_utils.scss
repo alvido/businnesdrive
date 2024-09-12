@@ -59,19 +59,23 @@ section {
 
 .decor-left {
     position: relative;
+    text-indent: 38px;
+
+    @include mobile {
+        text-indent: 20px;
+    }
 
     &::after {
         content: '';
         position: absolute;
-        left: 50%;
-        bottom: -32px;
-        width: 120px;
-        height: 6px;
+        left: 0;
+        top: 0px;
+        width: 6px;
+        height: 100%;
         background: var(--color-blue);
 
         @include mobile {
-            bottom: -24px;
-            height: 4px;
+            width: 4px;
         }
     }
 }

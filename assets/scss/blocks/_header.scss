@@ -8,12 +8,8 @@
     color: var(--color-white);
     background: var(--color-black);
 
-    & a {
-        color: var(--color-white);
-
-        @include hover {
-            color: var(--color-blue);
-        }
+    @include phone {
+        padding: 20px 0;
     }
 
     &.fixed {
@@ -24,10 +20,38 @@
         z-index: 2;
     }
 
+    & a {
+        color: var(--color-white);
+
+        @include hover {
+            color: var(--color-blue);
+        }
+    }
+
     &__branding {
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    &__social {
+        margin-left: clamp(2.5rem, -14.595rem + 35.66vw, 17.5rem);
+
+        @include mobile {
+            margin-left: clamp(1.25rem, -15.658rem + 48.31vw, 7.5rem);
+        }
+
+        @include phone {
+            margin-left: 0;
+        }
+    }
+
+    & .burger {
+        margin-left: auto;
+
+        @include phone {
+            margin-left: 0;
+        }
     }
 }
 
@@ -48,4 +72,37 @@
             color: var(--color-blue);
         }
     }
+}
+
+.lang {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 32px;
+
+    @include mobile {
+        padding: 20px;
+    }
+
+    @include phone {
+        border-top: 1px solid #FFFFFF1A;
+        border-bottom: 1px solid #FFFFFF1A;
+        justify-content: flex-end;
+    }
+
+    & a {
+        font-size: 16px;
+        opacity: .5;
+        text-transform: uppercase;
+        transition: all .3s ease;
+
+        @include hover {
+            opacity: 1;
+        }
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
 }

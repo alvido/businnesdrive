@@ -5,6 +5,10 @@
     position: relative;
     z-index: 2;
 
+    @include phone {
+        @include squere(32px);
+    }
+
     &::before,
     &::after {
         content: '';
@@ -18,14 +22,26 @@
         left: 50%;
         translate: -50% 0;
         transition: all .3s ease;
+
+        @include phone {
+            width: 20px;
+        }
     }
 
     &::before {
         top: 12px;
+
+        @include phone {
+            top: 8px;
+        }
     }
 
     &::after {
         bottom: 12px;
+
+        @include phone {
+            bottom: 8px;
+        }
     }
 
     & span {
@@ -34,6 +50,10 @@
         height: 2px;
         background: var(--color-white);
         transition-duration: var(--transition-duration);
+
+        @include phone {
+            width: 20px;
+        }
     }
 
     @include hover {

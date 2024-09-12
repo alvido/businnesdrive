@@ -1,2 +1,51 @@
 .about {
+
+    &.dark {
+        color: var(--color-white);
+        background: radial-gradient(22.21% 39.61% at 84.2% 17.28%, rgba(137, 137, 137, 0.15) 0%, rgba(137, 137, 137, 0) 100%), radial-gradient(20.07% 30.61% at 15.94% 62.28%, rgba(137, 137, 137, 0.15) 0%, rgba(137, 137, 137, 0) 100%), linear-gradient(0deg, #030A16, #030A16);
+
+        & p {
+            color: var(--color-gray-alt);
+        }
+
+        & .wrapper {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            & .info {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 32px;
+
+                @include mobile {
+                    gap: 24px;
+                }
+            }
+        }
+    }
+
+    &.home {
+
+        @include mobile {
+            display: none;
+        }
+
+        & .wrapper {
+            @include mobile {
+                flex-direction: column;
+
+                & .info {
+                    margin-top: 20px;
+                    width: 100%;
+                }
+            }
+        }
+
+        & img {
+            margin-top: clamp(1.25rem, 0.282rem + 4.13vw, 4rem);
+        }
+    }
 }
