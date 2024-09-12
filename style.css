@@ -482,7 +482,7 @@ hr {
 	margin-bottom: 1.5em;
 }
 
-ul,
+/* ul,
 ol {
 	margin: 0 0 1.5em 3em;
 }
@@ -493,7 +493,7 @@ ul {
 
 ol {
 	list-style: decimal;
-}
+} */
 
 li > ul,
 li > ol {
@@ -536,9 +536,9 @@ a {
 	color: #4169e1;
 }
 
-a:visited {
+/* a:visited {
 	color: #800080;
-}
+} */
 
 a:hover,
 a:focus,

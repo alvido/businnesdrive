@@ -1,19 +1,17 @@
 // Burger Menu Open //
-// Burger Menu Open //
 document.addEventListener("DOMContentLoaded", function () {
   // Выбираем бургер-кнопку и навигацию
   let burgerButton = document.getElementById("burgerButton");
-  let navigation = document.querySelector(".navigation");
+  let navigation = document.getElementById("site-navigation");
   let body = document.querySelector("body");
   // let links = document.querySelectorAll(".navigation__link");
 
-  // Если бургер-кнопка существует, добавляем обработчик события
   if (burgerButton) {
     burgerButton.addEventListener("click", function (e) {
       e.stopPropagation(); // Остановка всплытия события
-      burgerButton.classList.toggle("burger--active"); // Переключаем класс активности бургер-кнопки
-      // navigation.classList.toggle("navigation--active"); // Переключаем класс активности навигации
-      body.classList.toggle("lock"); // Переключаем класс активности навигации
+      burgerButton.classList.toggle("burger--active");
+      navigation.classList.toggle("navigation--active");
+      body.classList.toggle("lock");
     });
   }
 
@@ -51,8 +49,110 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
-
 // Fixed header end
+
+//swiper
+document.addEventListener("DOMContentLoaded", function () {
+  // Проверяем наличие элементов Swiper на странице
+  if (document.querySelector("#current")) {
+    new Swiper("#current", {
+      observer: true,
+      observeParents: true,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+      },
+    });
+  }
+
+  //   if (document.querySelector("#prior")) {
+  //     new Swiper("#prior", {
+  //       observer: true,
+  //       observeParents: true,
+  //       loop: true,
+  //       autoplay: {
+  //         delay: 3000,
+  //         disableOnInteraction: false,
+  //       },
+  //       pagination: {
+  //         el: ".swiper-pagination",
+  //         clickable: true,
+  //       },
+  //       navigation: {
+  //         nextEl: ".swiper-button-next",
+  //         prevEl: ".swiper-button-prev",
+  //       },
+  //       breakpoints: {
+  //         320: {
+  //           slidesPerView: 1,
+  //           spaceBetween: 10,
+  //         },
+  //         561: {
+  //           slidesPerView: 2,
+  //           spaceBetween: 20,
+  //         },
+  //         1024: {
+  //           slidesPerView: 2,
+  //           spaceBetween: 30,
+  //         },
+  //       },
+  //     });
+  //   }
+
+  //   if (document.querySelector("#strategic")) {
+  //     new Swiper("#strategic", {
+  //       observer: true,
+  //       observeParents: true,
+  //       loop: true,
+  //       autoplay: {
+  //         delay: 3000,
+  //         disableOnInteraction: false,
+  //       },
+  //       pagination: {
+  //         el: ".swiper-pagination",
+  //         clickable: true,
+  //       },
+  //       navigation: {
+  //         nextEl: ".swiper-button-next",
+  //         prevEl: ".swiper-button-prev",
+  //       },
+  //       breakpoints: {
+  //         320: {
+  //           slidesPerView: 1,
+  //           spaceBetween: 10,
+  //         },
+  //         561: {
+  //           slidesPerView: 2,
+  //           spaceBetween: 20,
+  //         },
+  //         1024: {
+  //           slidesPerView: 2,
+  //           spaceBetween: 30,
+  //         },
+  //       },
+  //     });
+  //   }
+});
+// swiper
 
 // // select2
 // // In your Javascript (external .js resource or <script> tag)
@@ -75,47 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //   // Находим родителя и добавляем ему класс
 // }
 // //faq collapse
-
-//swiper
-// const progressRows = document.querySelectorAll(".hero__swiper-progress");
-// let swiper;
-
-// swiper = new Swiper(".swiper", {
-//   observer: true,
-//   observeParents: true,
-//   // loop: true,
-//   autoplay: {
-//     delay: 5000,
-//     disableOnInteraction: false,
-//   },
-//   pagination: {
-//     el: ".swiper-pagination",
-//     clickable: true,
-//   },
-//   navigation: {
-//     nextEl: ".swiper-button-next",
-//     prevEl: ".swiper-button-prev",
-//   },
-//   // Настройки для различных размеров экранов
-//   breakpoints: {
-//     // Когда ширина экрана >= 320px
-//     320: {
-//       slidesPerView: 1,
-//       spaceBetween: 10,
-//     },
-//     // Когда ширина экрана >= 480px
-//     768: {
-//       slidesPerView: 2,
-//       spaceBetween: 20,
-//     },
-//     // Когда ширина экрана >= 640px
-//     1024: {
-//       slidesPerView: 3,
-//       spaceBetween: 40,
-//     },
-//   },
-// });
-// swiper
 
 // //порядковый номер
 // // Получаем все элементы с классом form__step

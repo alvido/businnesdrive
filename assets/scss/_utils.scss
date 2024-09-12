@@ -28,3 +28,50 @@
         display: none !important;
     }
 }
+
+section {
+    padding-block: var(--section-padding-y);
+}
+
+.center {
+    text-align: center;
+}
+
+.decor-bottom {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -32px;
+        translate: -50% 0;
+        width: 120px;
+        height: 6px;
+        background: var(--color-blue);
+
+        @include mobile {
+            bottom: -24px;
+            height: 4px;
+        }
+    }
+}
+
+.decor-left {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -32px;
+        width: 120px;
+        height: 6px;
+        background: var(--color-blue);
+
+        @include mobile {
+            bottom: -24px;
+            height: 4px;
+        }
+    }
+}

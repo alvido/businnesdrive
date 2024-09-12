@@ -49,10 +49,12 @@ h6 {
 }
 
 h1 {
-    @include fluid-text(64, 48);
+    @include fluid-text(64, 46);
     letter-spacing: -0.02em;
     text-align: center;
+
     & span {
+        @include fluid-text(64, 40);
         font-family: "Bicubik";
         color: var(--color-blue);
         text-transform: uppercase;
@@ -60,17 +62,19 @@ h1 {
 }
 
 h2 {
-    @include fluid-text(30, 24);
-    font-weight: 400
+    @include fluid-text(64, 40);
+    font-weight: 700;
+    letter-spacing: -0.03em;
 }
 
 h3 {
-    @include fluid-text(24, 20);
-    font-weight: 500
+    @include fluid-text(32, 24);
+    font-weight: 700;
 }
 
 h4 {
-    @include fluid-text(16, 20);
+    @include fluid-text(24, 20);
+    font-weight: 700;
 }
 
 h5 {

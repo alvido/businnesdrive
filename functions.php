@@ -50,7 +50,9 @@ function businnesdrive_setup()
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__('Primary', 'businnesdrive'),
+			'menu-header' => esc_html__('Primary', 'businnesdrive'),
+			'menu-footer' => esc_html__('Footer', 'businnesdrive'),
+			'menu-mobile' => esc_html__('Mobile', 'businnesdrive'),
 		)
 	);
 
@@ -166,12 +168,16 @@ add_action('widgets_init', 'businnesdrive_widgets_init');
  */
 function businnesdrive_scripts()
 {
-	wp_enqueue_style('select2.css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
-	wp_enqueue_style('swiper.css', 'https://cdn.jsdelivr.net/npm/swiper@11.1.4/swiper-bundle.min.css');
-	wp_enqueue_style('style.css', get_stylesheet_directory_uri() . '/assets/css/style.css');
+	// wp_enqueue_style('select2-style', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+	wp_enqueue_style('swiper-style', 'https://cdn.jsdelivr.net/npm/swiper@11.1.4/swiper-bundle.min.css');
+	wp_enqueue_style('main-style', get_stylesheet_directory_uri() . '/assets/css/style.css');
 
 	wp_enqueue_style('businnesdrive-style', get_stylesheet_uri(), array(), _S_VERSION);
 	wp_style_add_data('businnesdrive-style', 'rtl', 'replace');
+
+	wp_deregister_script('jquery');
+	wp_register_script('jquery', get_stylesheet_directory_uri() . '/assets/js/jquery.min.js', array(), null, true);
+	wp_enqueue_script('jquery');
 
 	wp_enqueue_script('businnesdrive-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 
@@ -179,10 +185,10 @@ function businnesdrive_scripts()
 		wp_enqueue_script('comment-reply');
 	}
 
-	wp_enqueue_script('select2.js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js');
-	wp_enqueue_script('swiper.js', 'https://cdn.jsdelivr.net/npm/swiper@11.1.4/swiper-bundle.min.js');
+	wp_enqueue_script('select2-script', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), null, true);
+	wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11.1.4/swiper-bundle.min.js', array('jquery'), null, true);
 
-	wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array('jquery'), null, true);
+	wp_enqueue_script('main-script', get_stylesheet_directory_uri() . '/assets/js/scripts.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'businnesdrive_scripts');
 
@@ -213,3 +219,38 @@ if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// Отображение SVG
+add_filter('upload_mimes', 'svg_upload_allow');
+# Добавляет SVG в список разрешенных для загрузки файлов.
+function svg_upload_allow($mimes)
+{
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
+# Исправление MIME типа для SVG файлов.
+function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
+{
+	// WP 5.1 +
+	if (version_compare($GLOBALS['wp_version'], '5.1.0', '>=')) {
+		$dosvg = in_array($real_mime, ['image/svg', 'image/svg+xml']);
+	} else {
+		$dosvg = ('.svg' === strtolower(substr($filename, -4)));
+	}
+	// mime тип был обнулен, поправим его
+	// а также проверим право пользователя
+	if ($dosvg) {
+		// разрешим
+		if (current_user_can('manage_options')) {
+			$data['ext'] = 'svg';
+			$data['type'] = 'image/svg+xml';
+		}
+		// запретим
+		else {
+			$data['ext'] = false;
+			$data['type'] = false;
+		}
+	}
+	return $data;
+}
+// Отображение SVG

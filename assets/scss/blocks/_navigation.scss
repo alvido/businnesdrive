@@ -1,28 +1,29 @@
 .navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
     @include flex-center;
-    gap: 50px;
+    background: var(--color-black);
+    transition-duration: var(--transition-duration);
 
-    @include mobile {
-        padding: 40px 24px;
-        position: absolute;
-        top: -1000%;
-        left: 0;
-        z-index: 1;
-        width: 100%;
+    &.navigation--active {
         height: 100vh;
-        opacity: 0;
-        transition: all .3s ease;
-        background: var(--color-white);
-
-        &.navigation--active {
-            top: 100%;
-            opacity: 1;
-        }
+        opacity: 1;
+        visibility: visible;
     }
 
+    @include mobile {}
+
     &__list {
-        @include flex-center;
-        gap: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
 
         & li {
             & a {
@@ -30,7 +31,7 @@
                 display: block;
                 font-weight: 500;
 
-                &::after{
+                &::after {
                     content: '';
                     position: absolute;
                     left: 50%;
@@ -38,12 +39,11 @@
                     translate: -50% 0;
                     width: 0;
                     height: 2px;
-                    background: var(--color-black);
+                    background: var(--color-blue);
                     transition-duration: var(--transition-duration);
                 }
 
                 @include hover {
-                    color: var(--color-black);
 
                     &::after {
                         width: 100%;

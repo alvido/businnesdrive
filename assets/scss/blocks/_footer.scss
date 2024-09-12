@@ -2,36 +2,82 @@
     margin-top: auto;
     padding-block: 64px 52px;
     @include fluid-text(18, 16);
-
-    color: var(--color-white);
-    background: linear-gradient(0deg, #040D1A, #040D1A),
-        radial-gradient(32.69% 87.5% at 63.92% 95.99%, rgba(137, 137, 137, 0.2) 0%, rgba(137, 137, 137, 0) 100%);
+    background: radial-gradient(32.69% 87.5% at 63.92% 95.99%, rgba(137, 137, 137, 0.2) 0%, rgba(137, 137, 137, 0) 100%), linear-gradient(0deg, #040D1A, #040D1A);
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
 
     @include mobile {
         padding-block: 48px;
     }
 
+    & p {
+        color: var(--color-gray);
+    }
+
+    & a {
+        color: var(--color-white);
+
+        @include hover {
+            color: var(--color-blue);
+        }
+    }
+
     & .wrapper {
         display: flex;
         justify-content: space-between;
         gap: 32px;
+
+        @include tablet {
+            flex-direction: column;
+        }
     }
 
     & .column {
         max-width: 400px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
 
-        & p {
-            color: var(--color-gray);
+        @include tablet {
+            max-width: none;
+        }
+
+        &.info {
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 120px;
+        }
+    }
+
+    &__logo {
+        margin-bottom: clamp(1.25rem, 1.03rem + 0.94vw, 1.875rem);
+    }
+
+    &__nav {
+        &-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
     }
 
     &__social {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
 
         & svg {
             color: var(--color-blue);
         }
+    }
+
+    &__bottom {
+        margin-top: clamp(2rem, 1.648rem + 1.5vw, 3rem);
+        padding: 24px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: space-between;
+        border-top: 1px solid #00B6ED26;
     }
 
 }

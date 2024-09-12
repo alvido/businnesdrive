@@ -8,6 +8,14 @@
     color: var(--color-white);
     background: var(--color-black);
 
+    & a {
+        color: var(--color-white);
+
+        @include hover {
+            color: var(--color-blue);
+        }
+    }
+
     &.fixed {
         position: fixed;
         left: 0;
@@ -27,6 +35,10 @@
     display: flex;
     align-items: center;
     gap: 32px;
+
+    @include mobile {
+        gap: 16px;
+    }
 
     & a {
         @include flex-center;

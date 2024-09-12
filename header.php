@@ -27,8 +27,8 @@
 		<a class="skip-link screen-reader-text"
 			href="#primary"><?php esc_html_e('Skip to content', 'businnesdrive'); ?></a>
 
-		<header id="masthead" class="site-header">
-			<div class="site-branding container">
+		<header id="masthead" class="header site-header">
+			<div class="header__branding site-branding container">
 				<?php if (get_theme_mod('header_logo')): ?>
 					<a class="header__logo logo" href="<?php echo esc_url(home_url('/')); ?>"
 						title="<?php echo esc_attr(get_bloginfo('name')); ?>">
@@ -54,9 +54,8 @@
 					global $dorobalo_theme_options;
 					$dorobalo_theme_options = dorobalo_theme_options();
 					?>
-
 					<?php if (!empty($dorobalo_theme_options['telegram'])): ?>
-						<a href="<?php echo $dorobalo_theme_options['telegram'] ?>" class="">
+						<a href="<?php echo $dorobalo_theme_options['telegram'] ?>" class="telegram" target="_blank">
 							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g clip-path="url(#clip0_1_635)">
 									<path
@@ -71,9 +70,8 @@
 							</svg>
 						</a>
 					<?php endif; ?>
-
 					<?php if (!empty($dorobalo_theme_options['instagram'])): ?>
-						<a href="<?php echo $dorobalo_theme_options['instagram'] ?>" class="">
+						<a href="<?php echo $dorobalo_theme_options['instagram'] ?>" class="instagram" target="_blank">
 							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g clip-path="url(#clip0_1_638)">
 									<path
@@ -94,7 +92,7 @@
 						</a>
 					<?php endif; ?>
 					<?php if (!empty($dorobalo_theme_options['facebook'])): ?>
-						<a href="<?php echo $dorobalo_theme_options['facebook'] ?>" class="">
+						<a href="<?php echo $dorobalo_theme_options['facebook'] ?>" class="facebook" target="_blank">
 							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g clip-path="url(#clip0_1_643)">
 									<path
@@ -110,7 +108,7 @@
 						</a>
 					<?php endif; ?>
 					<?php if (!empty($dorobalo_theme_options['youtube'])): ?>
-						<a href="<?php echo $dorobalo_theme_options['youtube'] ?>" class="">
+						<a href="<?php echo $dorobalo_theme_options['youtube'] ?>" class="youtube" target="_blank">
 							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g clip-path="url(#clip0_1_646)">
 									<path
@@ -125,20 +123,21 @@
 									</clipPath>
 								</defs>
 							</svg>
-
 						</a>
 					<?php endif; ?>
-				</div>
+				</div><!-- .header__social -->
+				<button class="burger" id="burgerButton" aria-controls="primary-menu" aria-expanded="false">
+					<span><?php esc_html_e('Primary Menu', 'businnesdrive'); ?></span>
+				</button>
 			</div><!-- .site-branding -->
-
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu"
-					aria-expanded="false"><?php esc_html_e('Primary Menu', 'businnesdrive'); ?></button>
+			<nav id="site-navigation" class="header__navigation navigation">
 				<?php
 				wp_nav_menu(
 					array(
-						'theme_location' => 'menu-1',
+						'theme_location' => 'menu-header',
 						'menu_id' => 'primary-menu',
+						'container' => 'ul',
+						'menu_class' => 'navigation__list',
 					)
 				);
 				?>

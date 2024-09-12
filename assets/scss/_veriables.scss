@@ -6,8 +6,11 @@ $container: 1320;
     /*colors*/
     --color-black: #030A16;
     --color-white: #ffffff;
-    --color-gray: #A6A6A6;
+    --color-white-alt: #F9F9F9;
+
     --color-blue: #1397D6;
+    --color-gray: #A6A6A6;
+    --color-gray-alt: #E5E3DF;
 
 
 
@@ -26,9 +29,9 @@ $container: 1320;
     --font-family-base: "AvenirNextCyr", serif;
 
     --container-width: #{$container}px;
-    --container-padding-x: clamp(1rem, -0.333rem + 5.93vw, 5rem);
+    --container-padding-x: clamp(1.25rem, -5.519rem + 10.58vw, 4rem);
 
-    --section-padding-y: 80px;
+    --section-padding-y: clamp(3rem, 1.195rem + 7.7vw, 8.125rem);
     /*body*/
 
     /*button*/
