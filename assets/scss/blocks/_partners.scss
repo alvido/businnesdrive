@@ -1,0 +1,9 @@
+.partners {
+
+    & h2 {
+        max-width: 900px;
+        margin: 0 auto;
+
+        @include fluid-text(64, 25);
+    }
+}
