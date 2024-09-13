@@ -1,0 +1,25 @@
+.quiz {
+    @include mobile {
+        padding-block: 20px;
+    }
+
+    & .dark {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        text-align: center;
+        padding: clamp(3rem, 1.856rem + 4.88vw, 6.25rem) 20px;
+        color: var(--color-gray-alt);
+        background: radial-gradient(54.17% 89.04% at 50.04% 94.25%, rgba(137, 137, 137, 0.15) 0%, rgba(137, 137, 137, 0) 100%), linear-gradient(0deg, #030A16, #030A16);
+
+        @include mobile {
+            gap: 24px;
+        }
+
+        & p {
+            max-width: 700px;
+            @include fluid-text(20, 15);
+        }
+    }
+}

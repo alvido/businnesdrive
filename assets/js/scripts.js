@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
 //swiper
 document.addEventListener("DOMContentLoaded", function () {
   // Проверяем наличие элементов Swiper на странице
-  if (document.querySelector("#current")) {
-    new Swiper("#current", {
+  if (document.querySelector("#consistSwiper")) {
+    new Swiper("#consistSwiper", {
       observer: true,
       observeParents: true,
       loop: true,
@@ -79,81 +79,13 @@ document.addEventListener("DOMContentLoaded", function () {
           slidesPerView: 1,
           spaceBetween: 10,
         },
-        768: {
+        560: {
           slidesPerView: 1,
-          spaceBetween: 20,
+          spaceBetween: 10,
         },
       },
     });
   }
-
-  //   if (document.querySelector("#prior")) {
-  //     new Swiper("#prior", {
-  //       observer: true,
-  //       observeParents: true,
-  //       loop: true,
-  //       autoplay: {
-  //         delay: 3000,
-  //         disableOnInteraction: false,
-  //       },
-  //       pagination: {
-  //         el: ".swiper-pagination",
-  //         clickable: true,
-  //       },
-  //       navigation: {
-  //         nextEl: ".swiper-button-next",
-  //         prevEl: ".swiper-button-prev",
-  //       },
-  //       breakpoints: {
-  //         320: {
-  //           slidesPerView: 1,
-  //           spaceBetween: 10,
-  //         },
-  //         561: {
-  //           slidesPerView: 2,
-  //           spaceBetween: 20,
-  //         },
-  //         1024: {
-  //           slidesPerView: 2,
-  //           spaceBetween: 30,
-  //         },
-  //       },
-  //     });
-  //   }
-
-  //   if (document.querySelector("#strategic")) {
-  //     new Swiper("#strategic", {
-  //       observer: true,
-  //       observeParents: true,
-  //       loop: true,
-  //       autoplay: {
-  //         delay: 3000,
-  //         disableOnInteraction: false,
-  //       },
-  //       pagination: {
-  //         el: ".swiper-pagination",
-  //         clickable: true,
-  //       },
-  //       navigation: {
-  //         nextEl: ".swiper-button-next",
-  //         prevEl: ".swiper-button-prev",
-  //       },
-  //       breakpoints: {
-  //         320: {
-  //           slidesPerView: 1,
-  //           spaceBetween: 10,
-  //         },
-  //         561: {
-  //           slidesPerView: 2,
-  //           spaceBetween: 20,
-  //         },
-  //         1024: {
-  //           slidesPerView: 2,
-  //           spaceBetween: 30,
-  //         },
-  //       },
-  //     });
-  //   }
 });
 // swiper
 
