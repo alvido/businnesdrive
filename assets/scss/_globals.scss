@@ -69,16 +69,21 @@ h2 {
 }
 
 h3 {
-    @include fluid-text(32, 24);
+    @include fluid-text(48, 32);
     font-weight: 700;
 }
 
 h4 {
-    @include fluid-text(24, 20);
+    @include fluid-text(32, 24);
     font-weight: 700;
 }
 
 h5 {
+    @include fluid-text(24, 20);
+    font-weight: 700;
+}
+
+h6 {
     font-family: "Inter", system-ui;
     @include fluid-text(20, 18);
     font-weight: 600;

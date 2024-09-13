@@ -89,6 +89,33 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // swiper
 
+
+// textarea show //
+document.addEventListener("DOMContentLoaded", function () {
+  let openTextArea = document.getElementById("openTextArea");
+  let hiddenArea = document.getElementById("hiddenArea");
+
+  if (openTextArea) {
+    openTextArea.addEventListener("click", function (e) {
+      e.stopPropagation(); // Остановка всплытия события
+      hiddenArea.classList.toggle("show");
+    });
+  }
+
+  // Обработчик клика по документу
+  document.addEventListener("click", function (e) {
+    // Проверяем, если клик произошел вне бургер-кнопки и навигации
+    if (!navigation.contains(e.target) && !burgerButton.contains(e.target)) {
+      // Убираем активные классы, если они были добавлены
+      burgerButton.classList.remove("burger--active");
+      navigation.classList.remove("navigation--active");
+      body.classList.remove("lock");
+    }
+  });
+
+});
+//
+
 // // select2
 // // In your Javascript (external .js resource or <script> tag)
 // $(document).ready(function () {

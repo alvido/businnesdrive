@@ -9,6 +9,15 @@
 
 @font-face {
     font-family: "AvenirNextCyr";
+    src: url("../fonts/AvenirNextCyr-Medium.woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    font-optical-sizing: auto;
+}
+
+@font-face {
+    font-family: "AvenirNextCyr";
     src: url("../fonts/AvenirNextCyr-Bold.woff");
     font-weight: 700;
     font-style: normal;
@@ -18,7 +27,8 @@
 
 @font-face {
     font-family: "Bicubik";
-    src: url("../fonts/bicubik.woff"),
+    src: url("../fonts/Bicubik.OTF"),
+        url("../fonts/bicubik.woff"),
         url("../fonts/bicubik.woff2");
     font-weight: 400;
     font-style: normal;

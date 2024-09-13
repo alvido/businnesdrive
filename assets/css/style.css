@@ -174,6 +174,14 @@ table {
 }
 @font-face {
   font-family: "AvenirNextCyr";
+  src: url("../fonts/AvenirNextCyr-Medium.woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+@font-face {
+  font-family: "AvenirNextCyr";
   src: url("../fonts/AvenirNextCyr-Bold.woff");
   font-weight: 700;
   font-style: normal;
@@ -182,7 +190,7 @@ table {
 }
 @font-face {
   font-family: "Bicubik";
-  src: url("../fonts/bicubik.woff"), url("../fonts/bicubik.woff2");
+  src: url("../fonts/Bicubik.OTF"), url("../fonts/bicubik.woff"), url("../fonts/bicubik.woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -194,6 +202,7 @@ table {
   --color-white: #ffffff;
   --color-white-alt: #F9F9F9;
   --color-blue: #1397D6;
+  --color-red: #FD5454;
   --color-gray: #A6A6A6;
   --color-gray-alt: #E5E3DF;
   --color-transparent: transparent;
@@ -212,7 +221,7 @@ table {
   --section-padding-y: clamp(3rem, 1.195rem + 7.7vw, 8.125rem);
   /*body*/
   /*button*/
-  --input-height: 55px;
+  --input-height: 56px;
   --button-height: 56px;
   --icon-button-height: 30px;
   --transition-duration: 0.3s;
@@ -382,16 +391,21 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(24px, 2.4242424242vw, 32px);
+  font-size: clamp(32px, 3.6363636364vw, 48px);
   font-weight: 700;
 }
 
 h4 {
-  font-size: clamp(20px, 1.8181818182vw, 24px);
+  font-size: clamp(24px, 2.4242424242vw, 32px);
   font-weight: 700;
 }
 
 h5 {
+  font-size: clamp(20px, 1.8181818182vw, 24px);
+  font-weight: 700;
+}
+
+h6 {
   font-family: "Inter", system-ui;
   font-size: clamp(18px, 1.5151515152vw, 20px);
   font-weight: 600;
@@ -626,6 +640,253 @@ h5 {
   .logo img {
     max-height: 32px;
   }
+}
+
+form {
+  margin-top: clamp(2rem, 1.648rem + 1.5vw, 3rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 24px;
+  /* Стилизованный radio button */
+  /* При отмеченном radio button изменить цвет и показать "галочку" */
+  /* Стилизованный чекбокс */
+  /* При отмеченном чекбоксе изменить цвет и показать "галочку" */
+}
+@media (max-width: 767px) {
+  form {
+    gap: 20px;
+  }
+}
+form label {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+form label label.required::before {
+  content: "*";
+  color: red;
+  font-weight: bold;
+}
+form label p {
+  position: relative;
+}
+form input,
+form select,
+form textarea {
+  margin: 0;
+  font-family: "AvenirNextCyr";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: capitalize;
+  outline: none;
+  width: 100%;
+  height: var(--input-height);
+  padding: 16px 24px;
+  color: var(--color-black);
+  border: 1px solid var(--color-gray-alt);
+}
+form input::-webkit-input-placeholder, form select::-webkit-input-placeholder, form textarea::-webkit-input-placeholder {
+  color: var(--color-gray);
+}
+form input::-moz-placeholder, form select::-moz-placeholder, form textarea::-moz-placeholder {
+  color: var(--color-gray);
+}
+form input:-ms-input-placeholder, form select:-ms-input-placeholder, form textarea:-ms-input-placeholder {
+  color: var(--color-gray);
+}
+form input::-ms-input-placeholder, form select::-ms-input-placeholder, form textarea::-ms-input-placeholder {
+  color: var(--color-gray);
+}
+form input::placeholder,
+form select::placeholder,
+form textarea::placeholder {
+  color: var(--color-gray);
+}
+form input:focus-visible,
+form select:focus-visible,
+form textarea:focus-visible {
+  border: 1px solid var(--color-blue);
+}
+form input[required] ~ p::after,
+form select[required] ~ p::after,
+form textarea[required] ~ p::after {
+  content: "*";
+  color: var(--color-red);
+  font-weight: bold;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 5px;
+}
+form textarea {
+  min-height: 120px;
+  resize: none;
+}
+form .open {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: capitalize;
+  color: var(--color-blue);
+}
+@media (hover: hover) {
+  form .open:hover {
+    color: var(--color-black);
+  }
+}
+@media (hover: none) {
+  form .open:active {
+    color: var(--color-black);
+  }
+}
+form #hiddenArea {
+  display: none;
+}
+form #hiddenArea.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+form .custom-radio {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  cursor: pointer;
+  /* Скрыть стандартный radio button */
+  /* Стиль для видимого элемента radio button */
+}
+form .custom-radio input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+form .custom-radio .radiomark {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: #F9FAFB;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgb(175, 186, 202);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  /* Отображение "галочки" внутри radio button */
+}
+form .custom-radio .radiomark::after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: url(/assets/images/icon/check.svg) no-repeat center;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+form .custom-radio input[type=radio]:checked + .radiomark {
+  background-color: var(--color-cyan);
+  border: 1px solid var(--color-cyan);
+}
+form .custom-radio input[type=radio]:checked + .radiomark::after {
+  opacity: 1;
+}
+form .custom-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 16px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  /* Скрыть стандартный чекбокс */
+  /* Стиль для видимого элемента чекбокса */
+}
+form .custom-checkbox input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+form .custom-checkbox .checkmark {
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+  background-color: var(--color-black);
+  border-radius: 14px;
+  position: relative;
+  cursor: pointer;
+  /* Отображение "галочки" внутри чекбокса */
+}
+form .custom-checkbox .checkmark::after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 2px;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-white);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+form .custom-checkbox input[type=checkbox]:checked + .checkmark {
+  background-color: var(--color-black);
+}
+form .custom-checkbox input[type=checkbox]:checked + .checkmark::after {
+  left: auto;
+  right: 2px;
 }
 
 .button {
@@ -963,7 +1224,7 @@ h5 {
 .created__list li span img {
   max-width: clamp(2.5rem, 2.17rem + 1.41vw, 3.438rem);
 }
-.created__list li h3 {
+.created__list li h4 {
   margin: clamp(1.5rem, 1.324rem + 0.75vw, 2rem) 0 16px;
 }
 
@@ -1011,7 +1272,7 @@ h5 {
     width: 100%;
   }
 }
-.advantages__list li h4 {
+.advantages__list li h5 {
   color: var(--color-gray-alt);
 }
 .advantages__list li p {
@@ -1074,7 +1335,7 @@ h5 {
     width: 100%;
   }
 }
-.consist .swiper-slide h3 {
+.consist .swiper-slide h4 {
   margin-bottom: clamp(1rem, 0.648rem + 1.5vw, 2rem);
 }
 
@@ -1156,7 +1417,7 @@ h5 {
     padding: 20px;
   }
 }
-.prices__list > li h5 {
+.prices__list > li h6 {
   margin-top: 20px;
   color: var(--color-blue);
 }
@@ -1225,7 +1486,6 @@ h5 {
   min-width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-image: url("../images/icon/agree.svg");
   background: url(../images/icon/agree.svg) no-repeat center, var(--color-white);
 }
 
@@ -1233,6 +1493,299 @@ h5 {
   max-width: 900px;
   margin: 0 auto;
   font-size: clamp(25px, 4.8484848485vw, 64px);
+}
+.partners__list {
+  margin-top: clamp(3.5rem, 2.62rem + 3.76vw, 6rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+@media (max-width: 1023px) {
+  .partners__list {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+.partners__list li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 16%;
+}
+@media (max-width: 1023px) {
+  .partners__list li {
+    width: 25%;
+  }
+}
+@media (max-width: 767px) {
+  .partners__list li {
+    width: 33%;
+  }
+}
+.partners__list li:nth-child(1), .partners__list li:nth-child(2) {
+  width: 50%;
+}
+@media (max-width: 560px) {
+  .partners__list li:nth-child(1), .partners__list li:nth-child(2) {
+    width: 100%;
+  }
+}
+
+.blog {
+  background: var(--color-white-alt);
+}
+.blog__categories {
+  padding: 32px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+}
+@media (max-width: 767px) {
+  .blog__categories {
+    padding: 24px 0 32px;
+  }
+}
+.blog__categories li {
+  color: var(--color-white);
+  background: var(--color-blue);
+}
+.blog__categories li a {
+  padding: 4px 10px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.blog__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1023px) {
+  .blog__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+.blog__list > li {
+  padding: 32px 24px;
+  min-height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (max-width: 1023px) {
+  .blog__list > li {
+    max-width: calc(50% - 10px);
+  }
+}
+@media (max-width: 767px) {
+  .blog__list > li {
+    padding: 20px;
+    max-width: 460px;
+    min-height: 300px;
+  }
+}
+.blog__list > li .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.blog__list > li .top h4 {
+  font-family: "Bicubik";
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-blue);
+  text-transform: uppercase;
+}
+.blog__list > li .top .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  gap: 4px;
+  font-size: 16px;
+  color: var(--color-white);
+}
+.blog__list > li .top .info .time {
+  color: var(--color-gray);
+}
+.blog__list > li .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 12px;
+}
+.blog__list > li p {
+  color: var(--color-gray);
+  display: -webkit-box;
+  /* Для использования flexbox-like структуры */
+  -webkit-box-orient: vertical;
+  /* Вертикальное отображение блоков */
+  overflow: hidden;
+  /* Обрезка содержимого за пределами блока */
+  text-overflow: ellipsis;
+  /* Добавление многоточия, если текст обрезается */
+  -webkit-line-clamp: 2;
+  /* Обрезаем после 2 строк */
+  line-clamp: 2;
+}
+.blog__link {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: var(--color-gray-alt);
+}
+@media (hover: hover) {
+  .blog__link:hover {
+    color: var(--color-blue);
+  }
+  .blog__link:hover::after {
+    rotate: 45deg;
+  }
+}
+@media (hover: none) {
+  .blog__link:active {
+    color: var(--color-blue);
+  }
+  .blog__link:active::after {
+    rotate: 45deg;
+  }
+}
+.blog__link::after {
+  content: "";
+  display: inline-block;
+  min-width: 24px;
+  height: 24px;
+  background: url(../images/icon/arrow-up-right.svg) no-repeat center;
+  -webkit-transition-duration: var(--transition-duration);
+          transition-duration: var(--transition-duration);
+}
+.blog__link h5 {
+  font-size: 24px;
+}
+.blog.home .blog__list {
+  margin-top: clamp(2rem, 1.296rem + 3vw, 4rem);
+}
+
+.feedback {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+@media (max-width: 1023px) {
+  .feedback {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+.feedback .column {
+  padding-block: clamp(3rem, 1.856rem + 4.88vw, 6.25rem);
+  padding-inline: clamp(1.25rem, -8.75rem + 15.63vw, 5.313rem);
+  width: 50%;
+}
+@media (max-width: 1023px) {
+  .feedback .column {
+    width: 100%;
+  }
+}
+@media (max-width: 560px) {
+  .feedback .column h3 {
+    text-align: center;
+  }
+}
+.feedback .column.dark {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 32px;
+  padding-inline: clamp(1.25rem, -5.519rem + 10.58vw, 4rem);
+  color: var(--color-gray-alt);
+  background: radial-gradient(38.37% 38.37% at 48.61% 30.04%, rgba(137, 137, 137, 0.2) 0%, rgba(137, 137, 137, 0) 100%), -webkit-gradient(linear, left bottom, left top, from(#040D1A), to(#040D1A));
+  background: radial-gradient(38.37% 38.37% at 48.61% 30.04%, rgba(137, 137, 137, 0.2) 0%, rgba(137, 137, 137, 0) 100%), linear-gradient(0deg, #040D1A, #040D1A);
+}
+@media (max-width: 767px) {
+  .feedback .column.dark {
+    gap: 24px;
+  }
+}
+@media (max-width: 560px) {
+  .feedback .column.dark h3 {
+    text-align: start;
+  }
+}
+.feedback .column.dark img {
+  max-width: 80px;
+}
+@media (max-width: 767px) {
+  .feedback .column.dark img {
+    max-width: 64px;
+  }
 }
 
 .swiper__navigation {
