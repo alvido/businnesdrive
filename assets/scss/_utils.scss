@@ -33,6 +33,12 @@ section {
     padding-block: var(--section-padding-y);
 }
 
+.site {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .center {
     text-align: center;
 }
@@ -59,10 +65,10 @@ section {
 
 .decor-left {
     position: relative;
-    text-indent: 38px;
+    padding-left: 38px;
 
     @include mobile {
-        text-indent: 20px;
+        padding-left: 20px;
     }
 
     &::after {
@@ -78,4 +84,14 @@ section {
             width: 4px;
         }
     }
+}
+
+.subtitle {
+    display: block;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--color-blue);
 }

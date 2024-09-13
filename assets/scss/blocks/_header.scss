@@ -1,8 +1,5 @@
 .header {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
+    position: relative;
     z-index: 1;
     padding: 24px 0;
     color: var(--color-white);
@@ -10,6 +7,13 @@
 
     @include phone {
         padding: 20px 0;
+    }
+
+    &.home {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
     }
 
     &.fixed {
@@ -34,25 +38,25 @@
         justify-content: space-between;
     }
 
-    &__social {
-        margin-left: clamp(2.5rem, -14.595rem + 35.66vw, 17.5rem);
+    // &__social {
+    //     margin-left: clamp(2.5rem, -14.595rem + 35.66vw, 17.5rem);
 
-        @include mobile {
-            margin-left: clamp(1.25rem, -15.658rem + 48.31vw, 7.5rem);
-        }
+    //     @include mobile {
+    //         margin-left: clamp(1.25rem, -15.658rem + 48.31vw, 7.5rem);
+    //     }
 
-        @include phone {
-            margin-left: 0;
-        }
-    }
+    //     @include phone {
+    //         margin-left: 0;
+    //     }
+    // }
 
-    & .burger {
-        margin-left: auto;
+    // & .burger {
+    //     margin-left: auto;
 
-        @include phone {
-            margin-left: 0;
-        }
-    }
+    //     @include phone {
+    //         margin-left: 0;
+    //     }
+    // }
 }
 
 .social {

@@ -207,4 +207,49 @@ form {
             right: 2px;
         }
     }
+
+    &.search__form {
+        margin: 0;
+        position: absolute;
+        top: 12px;
+        right: 0px;
+
+        @include tablet {
+            top: 0;
+        }
+
+        @include mobile {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        & .search__input {
+            padding-left: 52px;
+        }
+
+        & .search__btn {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            translate: 0 -50%;
+            @include reset-button;
+            @include squere(24px);
+            @include flex-center;
+
+            @include hover {
+                color: var(--color-blue);
+            }
+        }
+    }
+
+    &.subscription {
+        flex-direction: row;
+        max-width: 520px;
+        gap: 16px;
+        margin: clamp(2rem, 1.824rem + 0.75vw, 2.5rem) auto 0;
+
+        @include phone {
+            flex-direction: column;
+        }
+    }
 }

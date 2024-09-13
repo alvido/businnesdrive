@@ -9,6 +9,7 @@
     & .column {
         padding-block: clamp(3rem, 1.856rem + 4.88vw, 6.25rem);
         padding-inline: clamp(1.25rem, -8.75rem + 15.63vw, 5.313rem);
+        background: var(--color-white-alt);
         width: 50%;
 
         @include tablet {
