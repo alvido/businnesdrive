@@ -15,22 +15,23 @@
 'blocks/partners',
 'blocks/blog',
 'blocks/feedback',
-
-
-
-
-
-
-
-
+'blocks/team',
+'blocks/single',
 
 // 'blocks/select',
 'blocks/swiper',
 'blocks/about',
 
 
-
-
-
-
 'blocks/footer';
+
+
+
+.step {
+    display: none;
+  }
+  
+  .step.active {
+    display: block;
+  }
+  

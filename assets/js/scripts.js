@@ -86,6 +86,48 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
+
+  let swiperInstance;
+
+  function initSwiper() {
+    if (window.innerWidth < 768) {
+      if (!swiperInstance) {
+        swiperInstance = new Swiper("#teamSwiper", {
+          observer: true,
+          observeParents: true,
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          slidesPerView: 1,
+          spaceBetween: 10,
+        });
+      }
+    } else {
+      if (swiperInstance) {
+        swiperInstance.destroy(true, true); // Отключить Swiper
+        swiperInstance = null;
+      }
+    }
+  }
+
+  // Инициализация при загрузке
+  initSwiper();
+
+  // Перепроверка при изменении размеров окна
+  window.addEventListener("resize", function () {
+    initSwiper();
+  });
+
 });
 // swiper
 
@@ -101,18 +143,20 @@ document.addEventListener("DOMContentLoaded", function () {
       hiddenArea.classList.toggle("show");
     });
   }
+});
+//
 
-  // Обработчик клика по документу
-  document.addEventListener("click", function (e) {
-    // Проверяем, если клик произошел вне бургер-кнопки и навигации
-    if (!navigation.contains(e.target) && !burgerButton.contains(e.target)) {
-      // Убираем активные классы, если они были добавлены
-      burgerButton.classList.remove("burger--active");
-      navigation.classList.remove("navigation--active");
-      body.classList.remove("lock");
-    }
-  });
-
+//active team item 
+document.addEventListener("DOMContentLoaded", function () {
+  let teamItem = document.querySelectorAll(".team__list li");
+  if (teamItem) {
+    teamItem.forEach((item) => {
+      item.addEventListener("click", function (e) {
+        e.stopPropagation(); // Остановка всплытия события
+        this.classList.toggle("active");
+      });
+    });
+  }
 });
 //
 
@@ -152,3 +196,46 @@ document.addEventListener("DOMContentLoaded", function () {
 //   step.querySelector("h3").insertAdjacentElement("afterbegin", stepNumber);
 // });
 // //
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const steps = document.querySelectorAll(".step");
+  let currentStep = 0;
+
+  function showStep(stepIndex) {
+    steps.forEach((step, index) => {
+      step.style.display = index === stepIndex ? "block" : "none";
+    });
+  }
+
+  function nextStep() {
+    if (currentStep < steps.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+
+  document.querySelectorAll(".nextBtn").forEach(button => {
+    button.addEventListener("click", nextStep);
+  });
+
+  document.querySelectorAll(".prevBtn").forEach(button => {
+    button.addEventListener("click", prevStep);
+  });
+
+  showStep(currentStep);
+
+  // Отправка формы
+  document.getElementById("multiStepForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    // Логика отправки данных на сервер
+    alert("Форма отправлена!");
+  });
+});

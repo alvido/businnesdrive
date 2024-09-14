@@ -5,7 +5,34 @@
         background: var(--color-white-alt);
     }
 
-    &.home {
+    &.interested {
+        background: var(--color-white-alt);
+
+        & .interested__inner {
+            position: relative;
+
+            @include phone {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        & .button {
+            position: absolute;
+            top: 12px;
+            right: 0;
+
+            @include mobile {
+                top: 0;
+            }
+
+            @include phone {
+                margin-top: 32px;
+                position: static;
+                order: 1;
+            }
+        }
+
         & .blog__list {
             margin-top: clamp(2rem, 1.296rem + 3vw, 4rem);
         }
@@ -76,7 +103,7 @@
 
             @include mobile {
                 padding: 20px;
-                max-width: 460px;
+                max-width: 100%;
                 min-height: 300px;
             }
 

@@ -1,0 +1,202 @@
+.single {
+    padding: 0;
+
+    &__top {
+        padding-block: clamp(3rem, 2.648rem + 1.5vw, 4rem);
+        background: var(--color-white-alt);
+
+        & h1 {
+            margin-block: 12px;
+        }
+
+        & p {
+            max-width: 800px;
+            margin: 0 auto
+        }
+
+        & .categories__list {
+            padding: 12px 0 clamp(2rem, 1.296rem + 3vw, 4rem);
+            justify-content: center;
+        }
+
+        & img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+
+            @include mobile {
+                height: 240px;
+            }
+        }
+    }
+
+    & .articles {
+        padding-block: clamp(3rem, 2.648rem + 1.5vw, 4rem);
+
+        & .container {
+            max-width: 760px;
+            padding-inline: 20px;
+        }
+
+        & p {
+            margin-bottom: clamp(2rem, 1.648rem + 1.5vw, 3rem);
+        }
+
+        & h4 {
+            margin-bottom: 24px;
+        }
+
+        & h5 {
+            margin-bottom: 16px;
+        }
+
+        & figure {
+            margin-bottom: clamp(2rem, 1.648rem + 1.5vw, 3rem);
+        }
+
+        & figcaption {
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        & a {
+            text-decoration: underline;
+
+            @include hover {
+                color: var(--color-blue);
+            }
+        }
+
+        & blockquote {
+            margin: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: clamp(1.5rem, 1.324rem + 0.75vw, 2rem);
+            margin-bottom: clamp(2rem, 1.648rem + 1.5vw, 3rem);
+            padding-left: 20px;
+            border-left: 6px solid var(--color-blue);
+
+            & p {
+                margin: 0;
+                @include fluid-text(16, 14);
+                line-height: 1.3;
+            }
+        }
+
+        & cite {
+            @include fluid-text(24, 20);
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        & ol,
+        & ul {
+            margin: 0;
+            margin-bottom: clamp(2rem, 1.648rem + 1.5vw, 3rem);
+            padding-left: clamp(1.5rem, 1.324rem + 0.75vw, 2rem);
+        }
+
+        & .articles__bottom {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(2rem, 1.648rem + 1.5vw, 3rem);
+
+            & .content {
+                padding: 32px;
+                background: var(--color-white-alt);
+
+                @include mobile {
+                    padding: 16px;
+                }
+
+                & .decor-left {
+                    padding-left: 28px;
+
+                    &::after {
+                        width: 4px;
+                    }
+
+                    @include mobile {
+                        padding-left: 20px;
+                        margin-bottom: 16px
+                    }
+                }
+
+                & h4 {
+                    @include fluid-text(30, 24);
+                    font-weight: 600;
+                }
+
+                & p {
+                    &:last-child {
+                        margin: 0;
+                    }
+                }
+            }
+
+            & .author {
+                position: relative;
+                border-top: 1px solid var(--color-gray-alt);
+                padding-top: 25px;
+
+                @include mobile {
+                    padding-top: 16px;
+                }
+
+                &__desc {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+
+                    @include mobile {
+                        gap: 24px;
+                    }
+
+                    & img {
+                        max-width: 56px;
+                        height: 56px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    & .author__name {
+                        margin: 0;
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+
+                    & .author__work {
+                        margin: 0;
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: var(--color-gray-dark);
+                    }
+                }
+
+                & .social {
+                    position: absolute;
+                    top: 25px;
+                    right: 0;
+                    gap: 24px;
+
+                    @include phone {
+                        margin-top: 10px;
+                        position: static;
+
+                        & svg {
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }
+
+                    @include mobile {
+                        gap: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

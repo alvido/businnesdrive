@@ -7,6 +7,21 @@
     @include mobile {
         width: 100%;
     }
+
+    &--team {
+        display: none;
+
+        @include mobile {
+            display: flex;
+            position: absolute;
+            left: 50%;
+            translate: -50% 0;
+
+            & .swiper-pagination {
+                margin-top: 17px;
+            }
+        }
+    }
 }
 
 .swiper-pagination {
