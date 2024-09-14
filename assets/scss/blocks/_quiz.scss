@@ -1,4 +1,5 @@
 .quiz {
+    @include flex-center;
     position: absolute;
     left: 0;
     right: 0;
@@ -8,17 +9,172 @@
     padding: 26px 0;
     background: #FFFFFF24;
 
+    @include mobile {
+        padding: 0;
+    }
+
     &__wrapper {
         width: 100%;
-        height: 100%;
+        max-width: 1100px;
+        min-height: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        color: var(--color-gray-alt);
         background: var(--color-black);
+    }
 
-        &.container {
-            max-width: 1100px;
-            padding: 20px;
+    &__header,
+    &__footer {
+        padding: 32px;
+        display: flex;
+        align-items: center;
+        background: #FFFFFF08;
+
+        @include mobile {
+            padding: 16px 20px;
+        }
+    }
+
+    &__header {
+        justify-content: space-between;
+    }
+
+    &__footer {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 24px;
+
+        @include phone {
+            justify-content: space-between;
+
+            & .button {
+                max-width: 216px;
+                padding: 0;
+
+                &--transparent {
+                    width: 56px;
+
+                    & span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &__content {
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        @include mobile {
+            padding: 32px 20px;
+            gap: 24px;
+        }
+    }
+
+    &__progress {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+
+        @include mobile {
+            gap: 12px;
+        }
+
+        @include phone {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        & .decor-left {
+            padding-left: 28px;
+            font-size: 20px;
+            font-weight: 700;
+            text-wrap: nowrap;
+
+            @include mobile {
+                padding-left: 15px;
+            }
+
+            &::after {
+                width: 4px;
+
+                @include mobile {
+                    width: 3px;
+                }
+            }
+        }
+
+        &-bar {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 24px;
+            background: #FFFFFF14;
+
+            @include phone {
+                height: 12px;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 15px;
+                height: 100%;
+                width: var(--progress-width, 0%);
+                /* Используем CSS-переменную для ширины */
+                background: var(--color-blue);
+                transition: width 0.3s ease;
+            }
+        }
+    }
+
+    &__name {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        gap: 24px;
+
+        @include mobile {
+            gap: 20px;
+        }
+
+        & span {
+            @include flex-center;
+            min-width: 56px;
+            height: 49px;
+            background: var(--color-blue);
+
+            @include mobile {
+                min-width: 36px;
+                height: 36px;
+            }
+        }
+    }
+
+    &__form {
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto;
+
+        & input,
+        & select,
+        & textarea {
+            color: var(--color-white);
+            background: #FFFFFF14;
+            border: none;
         }
     }
 }
+
 .survey {
     @include mobile {
         padding-block: 20px;

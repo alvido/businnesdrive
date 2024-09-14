@@ -160,14 +160,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //
 
-// // select2
-// // In your Javascript (external .js resource or <script> tag)
-// $(document).ready(function () {
-//   $("#womanInsurance, #womanStatus, #manStatus, #manInsurance").select2({
-//     minimumResultsForSearch: Infinity,
-//   });
-// });
-// //
+// select2
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function () {
+  $(".select__input").select2({
+    minimumResultsForSearch: Infinity,
+  });
+});
+//
 
 // //faq collapse
 // $(document).ready(function () {
@@ -198,14 +198,51 @@ document.addEventListener("DOMContentLoaded", function () {
 // //
 
 
+// quiz logic
 document.addEventListener("DOMContentLoaded", function () {
   const steps = document.querySelectorAll(".step");
+  const totalSteps = steps.length; // Общее количество шагов
   let currentStep = 0;
+
+  const stepNumberEl = document.getElementById("stepNumber");
+  const stepTitleEl = document.getElementById("stepTitle");
+  const currentStepEl = document.getElementById("currentStep");
+  const totalStepsEl = document.getElementById("totalSteps");
+  const progressBar = document.getElementById("progressBar");
+
+  const nextBtn = document.querySelector(".nextBtn");
+  const prevBtn = document.querySelector(".prevBtn");
+  const submitBtn = document.querySelector(".submitBtn");
+
+  // Установить общее количество шагов
+  totalStepsEl.textContent = totalSteps;
 
   function showStep(stepIndex) {
     steps.forEach((step, index) => {
-      step.style.display = index === stepIndex ? "block" : "none";
+      step.style.display = index === stepIndex ? "flex" : "none";
     });
+
+    // Обновляем номер шага и заголовок
+    stepNumberEl.textContent = stepIndex + 1;
+    currentStepEl.textContent = stepIndex + 1;
+    stepTitleEl.textContent = steps[stepIndex].getAttribute("data-step-title");
+
+    // Обновляем прогресс-бар
+    const progressPercent = ((stepIndex + 1) / totalSteps) * 100;
+    progressBar.style.setProperty('--progress-width', progressPercent + '%');
+
+    // Управляем видимостью кнопок
+    if (stepIndex === totalSteps - 1) {
+      // Если последний шаг
+      nextBtn.style.display = "none";
+      submitBtn.style.display = "flex";
+    } else {
+      nextBtn.style.display = "flex";
+      submitBtn.style.display = "none";
+    }
+
+    // Управляем видимостью кнопки "Назад"
+    prevBtn.style.display = stepIndex > 0 ? "flex" : "none";
   }
 
   function nextStep() {
@@ -222,20 +259,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.querySelectorAll(".nextBtn").forEach(button => {
-    button.addEventListener("click", nextStep);
-  });
+  nextBtn.addEventListener("click", nextStep);
+  prevBtn.addEventListener("click", prevStep);
 
-  document.querySelectorAll(".prevBtn").forEach(button => {
-    button.addEventListener("click", prevStep);
-  });
-
+  // Изначально показываем первый шаг
   showStep(currentStep);
-
-  // Отправка формы
-  document.getElementById("multiStepForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    // Логика отправки данных на сервер
-    alert("Форма отправлена!");
-  });
 });
+
+// quiz logic

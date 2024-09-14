@@ -23,8 +23,15 @@
     }
 
     @include hover {
-        color: var(--color-blue);
-        background: var(--color-white);
+        background: var(--color-transparent);
+    }
+
+    &--transparent {
+        background: var(--color-transparent);
+
+        @include hover {
+            background: var(--color-blue);
+        }
     }
 
     &-chat {
@@ -39,5 +46,45 @@
             right: 20px;
             bottom: 20px;
         }
+    }
+}
+
+.close {
+    @include reset-button;
+    @include squere(24px);
+    position: relative;
+
+    @include hover {
+
+        &::before,
+        &::after {
+            background: var(--color-blue);
+        }
+    }
+
+    & span {
+        font-size: 0;
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        translate: -50% -50%;
+        width: 24px;
+        height: 2px;
+        background: var(--color-white);
+        border-radius: 2px;
+        transition-duration: var(--transition-duration);
+    }
+
+    &::before {
+        rotate: 45deg;
+    }
+
+    &::after {
+        rotate: -45deg;
     }
 }

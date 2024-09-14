@@ -18,7 +18,7 @@
 'blocks/team',
 'blocks/single',
 
-// 'blocks/select',
+'blocks/select',
 'blocks/swiper',
 'blocks/about',
 
@@ -28,10 +28,16 @@
 
 
 .step {
-    display: none;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  gap: 24px;
+
+  @include mobile {
+    gap: 20px;
   }
-  
-  .step.active {
-    display: block;
-  }
-  
+}
+
+.step.active {
+  display: flex;
+}
