@@ -53,7 +53,10 @@
         gap: 24px;
 
         @include phone {
-            justify-content: space-between;
+
+            & .prevBtn {
+                margin-right: auto;
+            }
 
             & .button {
                 max-width: 216px;

@@ -49,42 +49,60 @@
     }
 }
 
-.close {
+.min {
     @include reset-button;
-    @include squere(24px);
     position: relative;
+    width: 32px;
+    height: 32px;
+    color: var(--color-white);
 
-    @include hover {
+    @include mobile {
+        width: 24px;
+        height: 24px;
+    }
+
+    &.close {
+        @include hover {
+
+            &::before,
+            &::after {
+                background: var(--color-blue);
+            }
+        }
+
+        & span {
+            font-size: 0;
+        }
 
         &::before,
         &::after {
-            background: var(--color-blue);
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            translate: -50% -50%;
+            width: 24px;
+            height: 2px;
+            background: var(--color-white);
+            border-radius: 2px;
+            transition-duration: var(--transition-duration);
+        }
+
+        &::before {
+            rotate: 45deg;
+        }
+
+        &::after {
+            rotate: -45deg;
         }
     }
 
-    & span {
-        font-size: 0;
+    &.back {
+        display: none;
+
+        @include mobile {
+            display: flex;
+        }
     }
 
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        translate: -50% -50%;
-        width: 24px;
-        height: 2px;
-        background: var(--color-white);
-        border-radius: 2px;
-        transition-duration: var(--transition-duration);
-    }
-
-    &::before {
-        rotate: 45deg;
-    }
-
-    &::after {
-        rotate: -45deg;
-    }
 }

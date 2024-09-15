@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const closeBtn = document.querySelector(".quiz .close");
   const nextBtn = document.querySelector(".nextBtn");
-  const prevBtn = document.querySelector(".prevBtn");
+  const prevButtons = document.querySelectorAll(".prevBtn");
   const submitBtn = document.querySelector(".submitBtn");
 
   // Установить общее количество шагов
@@ -281,7 +281,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Управляем видимостью кнопки "Назад"
-    prevBtn.style.display = stepIndex > 0 ? "flex" : "none";
+
+    prevButtons.forEach(prevBtn => {
+      prevBtn.style.display = stepIndex > 0 ? "flex" : "none";
+    });
   }
 
   function closeQuiz() {
@@ -306,7 +309,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   closeBtn.addEventListener("click", closeQuiz);
   nextBtn.addEventListener("click", nextStep);
-  prevBtn.addEventListener("click", prevStep);
+  prevButtons.forEach(button => {
+    button.addEventListener("click", prevStep);
+  });
 
   // Изначально показываем первый шаг
   showStep(currentStep);
