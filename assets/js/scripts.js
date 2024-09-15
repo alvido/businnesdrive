@@ -54,6 +54,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Fixed header end
 
+//
+document.addEventListener("DOMContentLoaded", function () {
+  const openQuiz = document.getElementById("openQuiz");
+
+  openQuiz.addEventListener("click", startQuiz);
+
+  function startQuiz() {
+    const quiz = document.querySelector(".quiz");
+    let body = document.querySelector("body");
+
+    if (quiz) {
+      quiz.classList.add("show");
+
+      if (body) {
+        console.log("Body найден:", body);
+        body.classList.add("lock");
+        console.log("Класс 'lock' добавлен. Текущий класс body:", body.className);
+      } else {
+        console.error("Body не найден.");
+      }
+    }
+  }
+});
+
+//
+
 //swiper
 document.addEventListener("DOMContentLoaded", function () {
   // Проверяем наличие элементов Swiper на странице
@@ -134,16 +160,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // textarea show //
 document.addEventListener("DOMContentLoaded", function () {
-  let openTextArea = document.getElementById("openTextArea");
-  let hiddenArea = document.getElementById("hiddenArea");
+  let openTextArea = document.querySelectorAll(".open-textarea");
 
   if (openTextArea) {
-    openTextArea.addEventListener("click", function (e) {
-      e.stopPropagation(); // Остановка всплытия события
-      hiddenArea.classList.toggle("show");
+    openTextArea.forEach((open) => {
+      open.addEventListener("click", function (e) {
+        e.stopPropagation(); // Stop event bubbling
+        let nextHiddenArea = this.nextElementSibling; // Get the next sibling element
+        if (nextHiddenArea && nextHiddenArea.classList.contains("hidden-area")) {
+          nextHiddenArea.classList.toggle("show"); // Toggle 'show' class
+        }
+      });
     });
   }
 });
+
 //
 
 //active team item 
@@ -163,10 +194,16 @@ document.addEventListener("DOMContentLoaded", function () {
 // select2
 // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function () {
-  $(".select__input").select2({
-    minimumResultsForSearch: Infinity,
-  });
+  if (typeof $.fn.select2 !== "undefined") {
+    $(".select__input").select2({
+      minimumResultsForSearch: Infinity,
+    });
+    console.log("Select2 подключен и работает.");
+  } else {
+    console.error("Select2 не подключен.");
+  }
 });
+
 //
 
 // //faq collapse
@@ -204,12 +241,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalSteps = steps.length; // Общее количество шагов
   let currentStep = 0;
 
+  const quiz = document.querySelector(".quiz");
   const stepNumberEl = document.getElementById("stepNumber");
   const stepTitleEl = document.getElementById("stepTitle");
   const currentStepEl = document.getElementById("currentStep");
   const totalStepsEl = document.getElementById("totalSteps");
   const progressBar = document.getElementById("progressBar");
 
+  const closeBtn = document.querySelector(".quiz .close");
   const nextBtn = document.querySelector(".nextBtn");
   const prevBtn = document.querySelector(".prevBtn");
   const submitBtn = document.querySelector(".submitBtn");
@@ -245,6 +284,12 @@ document.addEventListener("DOMContentLoaded", function () {
     prevBtn.style.display = stepIndex > 0 ? "flex" : "none";
   }
 
+  function closeQuiz() {
+    if (closeBtn) {
+      quiz.classList.remove("show");
+    }
+  }
+
   function nextStep() {
     if (currentStep < steps.length - 1) {
       currentStep++;
@@ -259,6 +304,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  closeBtn.addEventListener("click", closeQuiz);
   nextBtn.addEventListener("click", nextStep);
   prevBtn.addEventListener("click", prevStep);
 

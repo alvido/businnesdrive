@@ -642,9 +642,7 @@ form {
           align-items: flex-start;
   gap: 24px;
   /* Стилизованный radio button */
-  /* При отмеченном radio button изменить цвет и показать "галочку" */
   /* Стилизованный чекбокс */
-  /* При отмеченном чекбоксе изменить цвет и показать "галочку" */
 }
 @media (max-width: 767px) {
   form {
@@ -668,6 +666,26 @@ form label {
   font-weight: 500;
   line-height: 1.4;
   text-transform: capitalize;
+}
+form label.wrap {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+form label.hidden-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 0.5s ease, max-height 0.5s ease;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+form label.hidden-area.show {
+  opacity: 1;
+  max-height: 120px;
 }
 form label label.required::before {
   content: "*";
@@ -758,21 +776,26 @@ form .open {
     color: var(--color-black);
   }
 }
-form #hiddenArea {
-  display: none;
-}
-form #hiddenArea.show {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
 form .custom-radio {
+  padding: 16px 24px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   position: relative;
   cursor: pointer;
+  color: var(--color-black);
+  background: var(--color-white);
   /* Скрыть стандартный radio button */
   /* Стиль для видимого элемента radio button */
 }
@@ -782,16 +805,20 @@ form .custom-radio input[type=radio] {
   cursor: pointer;
   height: 0;
   width: 0;
+  /* При отмеченном radio button изменить цвет и показать "галочку" */
+}
+form .custom-radio input[type=radio]:checked + .radiomark::after {
+  opacity: 1;
 }
 form .custom-radio .radiomark {
   display: inline-block;
   width: 24px;
   height: 24px;
-  background-color: #F9FAFB;
   border-radius: 50%;
   position: relative;
   cursor: pointer;
-  border: 1px solid rgb(175, 186, 202);
+  background: var(--transparent);
+  border: 2px solid var(--color-black);
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   /* Отображение "галочки" внутри radio button */
@@ -803,37 +830,34 @@ form .custom-radio .radiomark::after {
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   opacity: 0;
-  background: url(/assets/images/icon/check.svg) no-repeat center;
+  background: var(--color-blue);
+  border-radius: 50%;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-form .custom-radio input[type=radio]:checked + .radiomark {
-  background-color: var(--color-cyan);
-  border: 1px solid var(--color-cyan);
-}
-form .custom-radio input[type=radio]:checked + .radiomark::after {
-  opacity: 1;
-}
 form .custom-checkbox {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
+  padding: 16px 24px;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  gap: 16px;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   position: relative;
+  cursor: pointer;
+  color: var(--color-black);
+  background: var(--color-white);
   /* Скрыть стандартный чекбокс */
   /* Стиль для видимого элемента чекбокса */
 }
@@ -843,36 +867,35 @@ form .custom-checkbox input[type=checkbox] {
   cursor: pointer;
   height: 0;
   width: 0;
+  /* При отмеченном чекбоксе изменить цвет и показать "галочку" */
+}
+form .custom-checkbox input[type=checkbox]:checked + .checkmark {
+  border-color: var(--color-blue);
+}
+form .custom-checkbox input[type=checkbox]:checked + .checkmark::after {
+  opacity: 1;
 }
 form .custom-checkbox .checkmark {
   display: inline-block;
-  width: 48px;
-  height: 28px;
-  background-color: var(--color-black);
-  border-radius: 14px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
   position: relative;
   cursor: pointer;
+  background: var(--color-transparent);
+  border: 2px solid var(--color-black);
   /* Отображение "галочки" внутри чекбокса */
 }
 form .custom-checkbox .checkmark::after {
   content: "";
   position: absolute;
-  display: block;
-  left: 2px;
-  top: 2px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--color-white);
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-form .custom-checkbox input[type=checkbox]:checked + .checkmark {
-  background-color: var(--color-black);
-}
-form .custom-checkbox input[type=checkbox]:checked + .checkmark::after {
-  left: auto;
-  right: 2px;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: url(../images/icon/checkbox.svg) no-repeat center;
 }
 form.search__form {
   margin: 0;
@@ -1456,7 +1479,8 @@ form.subscription {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: absolute;
+  display: none;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
@@ -1464,6 +1488,11 @@ form.subscription {
   z-index: 3;
   padding: 26px 0;
   background: rgba(255, 255, 255, 0.1411764706);
+}
+.quiz.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 @media (max-width: 767px) {
   .quiz {
@@ -1662,10 +1691,36 @@ form.subscription {
   width: 100%;
   margin: 0 auto;
 }
-.quiz__form input, .quiz__form select, .quiz__form textarea {
+.quiz__form label {
+  color: var(--color-gray);
+}
+.quiz__form input, .quiz__form select, .quiz__form textarea, .quiz__form .select2-container--default .select2-selection--single, .quiz__form .custom-radio,
+.quiz__form .custom-checkbox {
   color: var(--color-white);
   background: rgba(255, 255, 255, 0.0784313725);
   border: none;
+}
+.quiz__form .select2-container--default .select2-selection--single .select2-selection__arrow b {
+  background: url(../images/icon/chevron.svg) no-repeat center;
+}
+@media (hover: hover) {
+  .quiz__form .open:hover {
+    color: var(--color-white);
+  }
+}
+@media (hover: none) {
+  .quiz__form .open:active {
+    color: var(--color-white);
+  }
+}
+.quiz__form .custom-radio .radiomark {
+  border-color: var(--color-white);
+}
+.quiz__form .custom-checkbox input[type=checkbox]:checked + .checkmark {
+  background: var(--color-white);
+}
+.quiz__form .custom-checkbox .checkmark {
+  border-color: var(--color-white);
 }
 
 @media (max-width: 767px) {
@@ -2944,23 +2999,21 @@ form.subscription {
   width: 100% !important;
 }
 
+.select2-results__option--selectable {
+  background: var(--color-gray);
+}
+
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-  background-color: var(--color-black);
+  background-color: var(--color-blue);
 }
 
 .select2-container--default .select2-selection--single {
   margin: 0;
-  font-family: "AvenirNextCyr";
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.5;
-  text-transform: capitalize;
   outline: none;
   width: 100%;
   height: var(--input-height);
-  padding: 16px 24px;
-  color: var(--color-black);
   border: 1px solid var(--color-gray-alt);
+  border-radius: 0;
 }
 .select2-container--default .select2-selection--single::-webkit-input-placeholder {
   color: var(--color-gray);
@@ -2997,16 +3050,19 @@ form.subscription {
 .select2-container--default .select2-selection--single:focus-visible {
   border: 1px solid var(--color-black);
 }
-
-.select2-container .select2-selection--single .select2-selection__rendered {
-  padding: 0;
-  margin: 0;
-  color: var(--color-black);
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  font-family: "AvenirNextCyr";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: capitalize;
+  padding: 16px 24px;
+  color: var(--color-white);
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   top: 50%;
   right: 24px;
   translate: 0 -50%;
@@ -3020,7 +3076,7 @@ form.subscription {
   width: 100%;
   height: 100%;
   border: none;
-  background: url(../images/icon/ArrowDown2.svg) no-repeat center;
+  background: url(../images/icon/chevron-black.svg) no-repeat center;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -3031,7 +3087,7 @@ form.subscription {
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
-  border-color: var(--color-black);
+  border-color: var(--color-blue);
 }
 
 .swiper__navigation {
@@ -3470,7 +3526,6 @@ form.subscription {
 
 .step {
   width: 100%;
-  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;

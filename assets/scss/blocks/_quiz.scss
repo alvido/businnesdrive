@@ -1,6 +1,7 @@
 .quiz {
     @include flex-center;
-    position: absolute;
+    display: none;
+    position: fixed;
     left: 0;
     right: 0;
     top: 0;
@@ -8,6 +9,10 @@
     z-index: 3;
     padding: 26px 0;
     background: #FFFFFF24;
+
+    &.show {
+        display: flex;
+    }
 
     @include mobile {
         padding: 0;
@@ -165,13 +170,53 @@
         width: 100%;
         margin: 0 auto;
 
+        & label {
+            color: var(--color-gray);
+        }
+
         & input,
         & select,
-        & textarea {
+        & textarea,
+        & .select2-container--default .select2-selection--single,
+        & .custom-radio,
+        .custom-checkbox {
             color: var(--color-white);
             background: #FFFFFF14;
             border: none;
         }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            & b {
+                background: url(../images/icon/chevron.svg) no-repeat center;
+            }
+        }
+
+        & .open {
+            @include hover {
+                color: var(--color-white);
+            }
+        }
+
+        & .custom-radio {
+            & .radiomark {
+                border-color: var(--color-white);
+            }
+        }
+
+        & .custom-checkbox {
+
+            & input[type="checkbox"] {
+
+                &:checked+.checkmark {
+                    background: var(--color-white);
+                }
+            }
+
+            & .checkmark {
+                border-color: var(--color-white);
+            }
+        }
+
     }
 }
 

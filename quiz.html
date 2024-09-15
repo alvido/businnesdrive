@@ -19,9 +19,9 @@
 
 <body>
     <div class="site">
-        <header id="masthead" class="header">
+        <header id="masthead" class="header home">
             <div class="header__branding container">
-                <a class="header__logo logo" href="" title="">
+                <a class="header__logo logo" href="index.html" title="">
                     <picture>
                         <source srcset="assets/images/header/logo-min.svg" media="(max-width: 560px)">
                         <img src="assets/images/header/logo.png" alt="Лого">
@@ -98,12 +98,10 @@
             </div><!-- .site-branding -->
             <nav id="site-navigation" class="header__navigation navigation">
                 <ul class="navigation__list">
-                    <li><a href="services.html">Послуги</a></li>
-                    <li><a href="consultations.html">Консультації</a></li>
-                    <li><a href="consultants.html">Консультанти</a></li>
-                    <li><a href="documents.html">Документи</a></li>
-                    <li><a href="vacancies.html">Вакансії</a></li>
+                    <li><a href="/#survey">Квиз</a></li>
+                    <li><a href="blog.html">Блог</a></li>
                     <li><a href="about.html">Про нас</a></li>
+                    <li><a href="single.html">Сторінка</a></li>
                 </ul>
                 <div class="lang">
                     <a href="#" class="active">uk</a>
@@ -158,27 +156,20 @@
                             <!-- Шаг 2 -->
                             <div class="step" id="step-2" style="display: none;" data-step-title="Дані про бізнес">
                                 <label for="name">
-                                    <input type="text" id="name" name="name" required placeholder="Ваша посада">
+                                    <input type="text" id="name" name="name" placeholder="Ваша посада">
                                     <p>Ваша посада</p>
                                 </label>
                                 <label for="company">
-                                    <select class="select__input" name="" id="">
+                                    <select class="select__input" required name="" id="">
+                                        <option value="" disabled selected>Выберите опцию</option>
                                         <option value="">Роздрібна торгівля</option>
+                                        <option value="">торгівля</option>
                                         <option value="">Роздрібна торгівля</option>
-                                        <option value="">Роздрібна торгівля</option>
-                                        <option value="">Роздрібна торгівля</option>
+                                        <option value="">Роздрібна</option>
                                     </select>
                                     <p>Галузь вашого бізнесу?</p>
                                 </label>
-                                <label for="email">
-                                    <input type="email" id="email" name="email" required placeholder="email">
-                                    <p>email</p>
-                                </label>
-                                <label for="phone">
-                                    <input type="tel" id="phone" name="phone" required placeholder="+380 00 000 00 00">
-                                    <p>телефон</p>
-                                </label>
-                                <button class="open" id="openTextArea" type="button">
+                                <button class="open open-textarea" type="button">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_181_1649)">
@@ -197,85 +188,344 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    Додати коментар
+                                    Iнша галузь
                                 </button>
-                                <label for="comments" id="hiddenArea">
-                                    <textarea id="comments" name="comments" rows="4" placeholder="Коментар"></textarea>
-                                    <p>Коментар</p>
+                                <label class="hidden-area" for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                    <p>Галузь</p>
+                                </label>
+                                <label class="wrap">
+                                    <p>Кількість працівників у вашій компанії?</p>
+                                    <label class="custom-radio" for="min">
+                                        1-10
+                                        <input type="radio" id="min" name="people" value="with" checked="">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="middle">
+                                        11-50
+                                        <input type="radio" id="middle" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="max">
+                                        50+
+                                        <input type="radio" id="max" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
                                 </label>
                             </div>
 
                             <!-- Шаг 3 -->
                             <div class="step" id="step-3" style="display: none;"
                                 data-step-title="Як Ви дізналися про нашу CRM систему?">
-                                <input type="number" name="age" placeholder="Введите возраст" required>
+                                <label class="wrap">
+                                    <label class="custom-radio" for="min">
+                                        Реклама
+                                        <input type="radio" id="min" name="people" value="with" checked="">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="middle">
+                                        Рекомендація
+                                        <input type="radio" id="middle" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="max">
+                                        Пошук в інтернеті
+                                        <input type="radio" id="max" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </label>
+                                <button class="open open-textarea" type="button">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_181_1649)">
+                                            <path d="M5.33325 6H10.6666" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.33325 8.66675H9.33325" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M12 2.66675C12.5304 2.66675 13.0391 2.87746 13.4142 3.25253C13.7893 3.62761 14 4.13631 14 4.66675V10.0001C14 10.5305 13.7893 11.0392 13.4142 11.4143C13.0391 11.7894 12.5304 12.0001 12 12.0001H8.66667L5.33333 14.0001V12.0001H4C3.46957 12.0001 2.96086 11.7894 2.58579 11.4143C2.21071 11.0392 2 10.5305 2 10.0001V4.66675C2 4.13631 2.21071 3.62761 2.58579 3.25253C2.96086 2.87746 3.46957 2.66675 4 2.66675H12Z"
+                                                stroke="#1397D6" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_181_1649">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Інше
+                                </button>
+                                <label class="hidden-area" for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
 
                             <!-- Шаг 4 -->
                             <div class="step" id="step-4" style="display: none;"
                                 data-step-title="Чи використовуєте Ви зараз CRM систему?">
-                                <input type="text" name="city" placeholder="Введите город" required>
+                                <label class="wrap">
+                                    <label class="custom-radio" for="min">
+                                        Так
+                                        <input type="radio" id="min" name="people" value="with" checked="">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="middle">
+                                        Ні
+                                        <input type="radio" id="middle" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="max">
+                                        Використовував раніще
+                                        <input type="radio" id="max" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </label>
                             </div>
 
                             <!-- Шаг 5 -->
                             <div class="step" id="step-5" style="display: none;" data-step-title="Якими CRM системами Ви користувалися раніше, 
                             або використовуєте зараз?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                             <!-- Шаг 6 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Які проблеми Ви намагаєтеся вирішити за допомогою CRM?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                             <!-- Шаг 7 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Що Вам подобається в CRM системах?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                             <!-- Шаг 8 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Що Вам не подобається в CRM системах?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                             <!-- Шаг 9 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Які функції CRM для Вас найважливіші?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label class="wrap">
+                                    <label class="custom-checkbox" for="check1">
+                                        Управління контактами
+                                        <input type="checkbox" id="check1" name="people" value="with" checked="">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check2">
+                                        Автоматизація продажів
+                                        <input type="checkbox" id="check2" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check3">
+                                        Автоматизація маркетингу
+                                        <input type="checkbox" id="check3" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check4">
+                                        Звіти та аналітика
+                                        <input type="checkbox" id="check4" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </label>
+                                <button class="open open-textarea" type="button">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_181_1649)">
+                                            <path d="M5.33325 6H10.6666" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.33325 8.66675H9.33325" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M12 2.66675C12.5304 2.66675 13.0391 2.87746 13.4142 3.25253C13.7893 3.62761 14 4.13631 14 4.66675V10.0001C14 10.5305 13.7893 11.0392 13.4142 11.4143C13.0391 11.7894 12.5304 12.0001 12 12.0001H8.66667L5.33333 14.0001V12.0001H4C3.46957 12.0001 2.96086 11.7894 2.58579 11.4143C2.21071 11.0392 2 10.5305 2 10.0001V4.66675C2 4.13631 2.21071 3.62761 2.58579 3.25253C2.96086 2.87746 3.46957 2.66675 4 2.66675H12Z"
+                                                stroke="#1397D6" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_181_1649">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Інше
+                                </button>
+                                <label class="hidden-area" for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                             <!-- Шаг 10 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Які інструменти для аналізу даних вам потрібні?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label class="wrap">
+                                    <label class="custom-checkbox" for="check1">
+                                        Дашборди
+                                        <input type="checkbox" id="check1" name="people" value="with" checked="">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check2">
+                                        Звіти
+                                        <input type="checkbox" id="check2" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check3">
+                                        Візуалізації
+                                        <input type="checkbox" id="check3" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </label>
+                                <button class="open open-textarea" type="button">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_181_1649)">
+                                            <path d="M5.33325 6H10.6666" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.33325 8.66675H9.33325" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M12 2.66675C12.5304 2.66675 13.0391 2.87746 13.4142 3.25253C13.7893 3.62761 14 4.13631 14 4.66675V10.0001C14 10.5305 13.7893 11.0392 13.4142 11.4143C13.0391 11.7894 12.5304 12.0001 12 12.0001H8.66667L5.33333 14.0001V12.0001H4C3.46957 12.0001 2.96086 11.7894 2.58579 11.4143C2.21071 11.0392 2 10.5305 2 10.0001V4.66675C2 4.13631 2.21071 3.62761 2.58579 3.25253C2.96086 2.87746 3.46957 2.66675 4 2.66675H12Z"
+                                                stroke="#1397D6" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_181_1649">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Інше
+                                </button>
+                                <label class="hidden-area" for="comments" id="hiddenArea">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                             <!-- Шаг 11 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Який тип звітів для Вас важливий?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label class="wrap">
+                                    <label class="custom-checkbox" for="check1">
+                                        Продажі
+                                        <input type="checkbox" id="check1" name="people" value="with" checked="">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check2">
+                                        Маркетинг
+                                        <input type="checkbox" id="check2" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check3">
+                                        Підтримка клієнтів
+                                        <input type="checkbox" id="check3" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="custom-checkbox" for="check3">
+                                        Фінанси
+                                        <input type="checkbox" id="check3" name="people" value="without">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </label>
+                                <button class="open open-textarea" type="button">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_181_1649)">
+                                            <path d="M5.33325 6H10.6666" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.33325 8.66675H9.33325" stroke="#1397D6" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M12 2.66675C12.5304 2.66675 13.0391 2.87746 13.4142 3.25253C13.7893 3.62761 14 4.13631 14 4.66675V10.0001C14 10.5305 13.7893 11.0392 13.4142 11.4143C13.0391 11.7894 12.5304 12.0001 12 12.0001H8.66667L5.33333 14.0001V12.0001H4C3.46957 12.0001 2.96086 11.7894 2.58579 11.4143C2.21071 11.0392 2 10.5305 2 10.0001V4.66675C2 4.13631 2.21071 3.62761 2.58579 3.25253C2.96086 2.87746 3.46957 2.66675 4 2.66675H12Z"
+                                                stroke="#1397D6" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_181_1649">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Інше
+                                </button>
+                                <label class="hidden-area" for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
+
                             <!-- Шаг 12 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Який тип звітів для Вас важливий?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label class="wrap">
+                                    <label class="custom-radio" for="min">
+                                        Так
+                                        <input type="radio" id="min" name="people" value="with" checked="">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="middle">
+                                        Ні
+                                        <input type="radio" id="middle" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </label>
+                                <label for="name">
+                                    <input type="text" id="name" name="name" placeholder="Текст">
+                                    <p>Які саме</p>
+                                </label>
                             </div>
                             <!-- Шаг 13 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Які додаткові функції Ви б хотіли бачити в CRM?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                             <!-- Шаг 14 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Скільки людей у Вашій компанії будуть користуватися CRM?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label class="wrap">
+                                    <label class="custom-radio" for="min">
+                                        1-10
+                                        <input type="radio" id="min" name="people" value="with" checked="">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="middle">
+                                        11-50
+                                        <input type="radio" id="middle" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="max">
+                                        50+
+                                        <input type="radio" id="max" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </label>
                             </div>
                             <!-- Шаг 15 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="Чи потрібні Вам інтеграції з іншими системами?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label class="wrap">
+                                    <label class="custom-radio" for="min">
+                                        Так
+                                        <input type="radio" id="min" name="people" value="with" checked="">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                    <label class="custom-radio" for="middle">
+                                        Ні
+                                        <input type="radio" id="middle" name="people" value="without">
+                                        <span class="radiomark"></span>
+                                    </label>
+                                </label>
                             </div>
                             <!-- Шаг 16 -->
                             <div class="step" id="step-5" style="display: none;"
                                 data-step-title="З якими системами Ви хочете інтегрувати CRM?">
-                                <textarea name="comments" placeholder="Текст" required></textarea>
+                                <label for="comments">
+                                    <textarea id="comments" name="comments" rows="4" placeholder="Текст"></textarea>
+                                </label>
                             </div>
                         </form>
                     </div>

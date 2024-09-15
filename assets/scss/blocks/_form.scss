@@ -20,6 +20,23 @@ form {
         line-height: 1.4;
         text-transform: capitalize;
 
+        &.wrap {
+            flex-direction: column;
+        }
+
+        &.hidden-area {
+            display: flex;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+
+            &.show {
+                opacity: 1;
+                max-height: 120px;
+            }
+        }
+
         label.required::before {
             content: "*";
             color: red;
@@ -91,19 +108,17 @@ form {
         }
     }
 
-    #hiddenArea {
-        display: none;
-
-        &.show {
-            display: flex;
-        }
-    }
-
     /* Стилизованный radio button */
     .custom-radio {
+        padding: 16px 24px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         user-select: none;
         position: relative;
         cursor: pointer;
+        color: var(--color-black);
+        background: var(--color-white);
 
         /* Скрыть стандартный radio button */
         & input[type="radio"] {
@@ -112,6 +127,13 @@ form {
             cursor: pointer;
             height: 0;
             width: 0;
+
+            /* При отмеченном radio button изменить цвет и показать "галочку" */
+            &:checked+.radiomark {
+                &::after {
+                    opacity: 1;
+                }
+            }
         }
 
         /* Стиль для видимого элемента radio button */
@@ -119,11 +141,11 @@ form {
             display: inline-block;
             width: 24px;
             height: 24px;
-            background-color: #F9FAFB;
             border-radius: 50%;
             position: relative;
             cursor: pointer;
-            border: 1px solid rgba(175, 186, 202, 1);
+            background: var(--transparent);
+            border: 2px solid var(--color-black);
             transition: all .3s ease;
 
             /* Отображение "галочки" внутри radio button */
@@ -134,34 +156,33 @@ form {
                 left: 50%;
                 top: 50%;
                 translate: -50% -50%;
-                width: 100%;
-                height: 100%;
+                width: 50%;
+                height: 50%;
                 opacity: 0;
-                background: url(/assets/images/icon/check.svg) no-repeat center;
+                background: var(--color-blue);
+                border-radius: 50%;
                 transition: all .3s ease;
             }
         }
     }
 
-    /* При отмеченном radio button изменить цвет и показать "галочку" */
-    .custom-radio input[type="radio"]:checked+.radiomark {
-        background-color: var(--color-cyan);
-        border: 1px solid var(--color-cyan);
 
-        &::after {
-            opacity: 1;
-        }
-    }
+
+
+
+
 
     /* Стилизованный чекбокс */
     .custom-checkbox {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        // cursor: pointer;
+        padding: 16px 24px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         user-select: none;
         position: relative;
+        cursor: pointer;
+        color: var(--color-black);
+        background: var(--color-white);
 
         /* Скрыть стандартный чекбокс */
         & input[type="checkbox"] {
@@ -170,41 +191,41 @@ form {
             cursor: pointer;
             height: 0;
             width: 0;
+
+            /* При отмеченном чекбоксе изменить цвет и показать "галочку" */
+            &:checked+.checkmark {
+                border-color: var(--color-blue);
+
+                &::after {
+                    opacity: 1;
+                }
+            }
         }
 
         /* Стиль для видимого элемента чекбокса */
         & .checkmark {
             display: inline-block;
-            width: 48px;
-            height: 28px;
-            background-color: var(--color-black);
-            border-radius: 14px;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
             position: relative;
             cursor: pointer;
+            background: var(--color-transparent);
+            border: 2px solid var(--color-black);
+
 
             /* Отображение "галочки" внутри чекбокса */
             &::after {
                 content: "";
                 position: absolute;
-                display: block;
-                left: 2px;
-                top: 2px;
-                width: 24px;
-                height: 24px;
-                border-radius: 50%;
-                background: var(--color-white);
-                transform: rotate(45deg);
+                left: 50%;
+                top: 50%;
+                translate: -50% -50%;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                background: url(../images/icon/checkbox.svg) no-repeat center;
             }
-        }
-    }
-
-    /* При отмеченном чекбоксе изменить цвет и показать "галочку" */
-    .custom-checkbox input[type="checkbox"]:checked+.checkmark {
-        background-color: var(--color-black);
-
-        &::after {
-            left: auto;
-            right: 2px;
         }
     }
 
