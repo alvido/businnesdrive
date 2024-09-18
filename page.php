@@ -15,24 +15,25 @@
 get_header();
 ?>
 
-<main id="primary" class="main site-main">
-	<section class="about about-top">
-		<div class="container">
-			<div class="wrapper">
-				<h1 class="center"><?php the_title(); ?></h1>
-				<div class="center decor-bottom"><?php the_excerpt(); ?></div>
-			</div>
-			<?php $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
-			<img src="<?php echo esc_url($thumbnail_url ? $thumbnail_url : ''); ?>" alt="">
-		</div>
-	</section>
-	<section class="about__information">
-		<div class="about__information-inner container">
-			<?php the_content(); ?>
-		</div>
-	</section>
+	<main id="primary" class="main site-main">
+		Страница
+		<?php
+		while ( have_posts() ) :
+			the_post();
 
-</main><!-- #main -->
+			// get_template_part( 'template-parts/content', 'page' );
+			
+
+			// If comments are open or we have at least one comment, load up the comment template.
+			if ( comments_open() || get_comments_number() ) :
+				comments_template();
+			endif;
+
+		endwhile; // End of the loop.
+		?>
+
+	</main><!-- #main -->
 
 <?php
+get_sidebar();
 get_footer();

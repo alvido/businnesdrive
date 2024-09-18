@@ -373,7 +373,7 @@ get_header();
                     <input type="tel" id="phone" name="phone" required placeholder="+380 00 000 00 00">
                     <p>телефон</p>
                 </label>
-                <button class="open open-textarea" type="button">
+                <button class="open" id="openTextArea" type="button">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_181_1649)">
                             <path d="M5.33325 6H10.6666" stroke="#1397D6" stroke-width="1.5" stroke-linecap="round"
@@ -392,7 +392,7 @@ get_header();
                     </svg>
                     Додати коментар
                 </button>
-                <label class ="hidden-area" for="comments">
+                <label for="comments" id="hiddenArea">
                     <textarea id="comments" name="comments" rows="4" placeholder="Коментар"></textarea>
                     <p>Коментар</p>
                 </label>

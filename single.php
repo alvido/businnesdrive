@@ -52,119 +52,122 @@ get_header();
 				</article>
 				<div class="articles__bottom">
 					<div class="content">
-						<?php $article_bottom = get_field('article_bottom', $post_id); ?>
-
-						<?php if (!empty($article_bottom['title'])): ?>
-							<h4 class="decor-left"><?php echo $article_bottom['title'] ?></h4>
-						<?php endif; ?>
-						<?php if (!empty($article_bottom['text'])): ?>
-							<p><?php echo $article_bottom['text'] ?></p>
-						<?php endif; ?>
+						<h4 class="decor-left">Команда</h4>
+						<p>
+							Існує багато варіацій уривків з Lorem Ipsum, але більшість з них зазнала певних змін
+							на
+							кшталт жартівливих вставок або змішування слів, які навіть не виглядають
+							правдоподібно.
+							Якщо ви збираєтесь використовувати Lorem Ipsum, ви маєте упевнитись в тому, що
+							всередині
+							тексту не приховано нічого, що могло б викликати у читача конфуз.
+						</p>
+						<p>
+							Існує багато варіацій уривків з Lorem Ipsum, але більшість з них зазнала певних змін
+							на
+							кшталт жартівливих вставок або змішування слів, які навіть не виглядають
+							правдоподібно.
+							Якщо ви збираєтесь використовувати Lorem Ipsum, ви маєте упевнитись в тому, що
+							всередині
+							тексту не приховано нічого, що могло б викликати у читача конфуз.
+						</p>
 					</div>
 
 					<div class="author">
 						<div class="author__desc">
-							<?php
-							$author = get_field('author', $post_id);
-							if (!empty($author['author_photo'])) {
-								echo '<img src="' . esc_html($author['author_photo']) . '"
-								alt="' . esc_html($author['author_name']) . '">';
-							}
-							?>
+							<?php if (have_posts()):
+								while (have_posts()):
+									the_post(); ?>
+									<?php
+									// Получаем ID автора поста
+									$author_id = get_the_author_meta('ID');
+									// Получаем URL фото автора
+									$author_photo_url = get_avatar_url($author_id, array('size' => 100));
+									// Получаем имя автора
+									$author_name = get_the_author_meta('display_name', $author_id);
+									// Получаем описание автора
+									$author_description = get_the_author_meta('description', $author_id);
+									?>
+								<?php endwhile; endif; ?>
+							<img src="<?php echo esc_url($author_photo_url); ?>"
+								alt="<?php echo esc_attr($author_name); ?>">
 							<div class="autor__info">
-								<?php
-								if (!empty($author['author_name'])) {
-									echo '<p class="author__name">' . esc_html($author['author_name']) . '</p>';
-								}
-
-								if (!empty($author['author_profession'])) {
-									echo '<p class="author__work">' . esc_html($author['author_profession']) . '</p>';
-								}
-								?>
-
+								<p class="author__name"><?php echo esc_html($author_name); ?></p>
+								<p class="author__work"><?php echo esc_html($author_description); ?></p>
 								<div class="social">
-									<?php if (!empty($author['author_telegram'])): ?>
-										<a href="<?php echo $author['author_telegram'] ?>" class="telegram" target="_blank">
-											<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-												xmlns="http://www.w3.org/2000/svg">
-												<g clip-path="url(#clip0_1_635)">
-													<path
-														d="M20 13.3335L14.6667 18.6668L22.6667 26.6668L28 5.3335L4 14.6668L9.33333 17.3335L12 25.3335L16 20.0002"
-														stroke="white" stroke-width="1.5" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</g>
-												<defs>
-													<clipPath id="clip0_1_635">
-														<rect width="32" height="32" fill="white" />
-													</clipPath>
-												</defs>
-											</svg>
-										</a>
-									<?php endif; ?>
-									<?php if (!empty($author['author_instagram'])): ?>
-										<a href="<?php echo $author['author_instagram'] ?>" class="instagram"
-											target="_blank">
-											<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-												xmlns="http://www.w3.org/2000/svg">
-												<g clip-path="url(#clip0_1_638)">
-													<path
-														d="M5.33325 10.6668C5.33325 9.25234 5.89515 7.89579 6.89535 6.89559C7.89554 5.8954 9.2521 5.3335 10.6666 5.3335H21.3333C22.7477 5.3335 24.1043 5.8954 25.1045 6.89559C26.1047 7.89579 26.6666 9.25234 26.6666 10.6668V21.3335C26.6666 22.748 26.1047 24.1045 25.1045 25.1047C24.1043 26.1049 22.7477 26.6668 21.3333 26.6668H10.6666C9.2521 26.6668 7.89554 26.1049 6.89535 25.1047C5.89515 24.1045 5.33325 22.748 5.33325 21.3335V10.6668Z"
-														stroke="white" stroke-width="1.5" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path
-														d="M12 16C12 17.0609 12.4214 18.0783 13.1716 18.8284C13.9217 19.5786 14.9391 20 16 20C17.0609 20 18.0783 19.5786 18.8284 18.8284C19.5786 18.0783 20 17.0609 20 16C20 14.9391 19.5786 13.9217 18.8284 13.1716C18.0783 12.4214 17.0609 12 16 12C14.9391 12 13.9217 12.4214 13.1716 13.1716C12.4214 13.9217 12 14.9391 12 16Z"
-														stroke="white" stroke-width="1.5" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path d="M22 10V10.0133" stroke="white" stroke-width="1.5"
-														stroke-linecap="round" stroke-linejoin="round" />
-												</g>
-												<defs>
-													<clipPath id="clip0_1_638">
-														<rect width="32" height="32" fill="white" />
-													</clipPath>
-												</defs>
-											</svg>
-										</a>
-									<?php endif; ?>
-									<?php if (!empty($author['author_facebook'])): ?>
-										<a href="<?php echo $author['author_facebook'] ?>" class="facebook" target="_blank">
-											<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-												xmlns="http://www.w3.org/2000/svg">
-												<g clip-path="url(#clip0_1_643)">
-													<path
-														d="M9.33325 13.3333V18.6667H13.3333V28H18.6666V18.6667H22.6666L23.9999 13.3333H18.6666V10.6667C18.6666 10.313 18.8071 9.97391 19.0571 9.72386C19.3072 9.47381 19.6463 9.33333 19.9999 9.33333H23.9999V4H19.9999C18.2318 4 16.5361 4.70238 15.2859 5.95262C14.0356 7.20286 13.3333 8.89856 13.3333 10.6667V13.3333H9.33325Z"
-														stroke="white" stroke-width="1.5" stroke-linecap="round"
-														stroke-linejoin="round" />
-												</g>
-												<defs>
-													<clipPath id="clip0_1_643">
-														<rect width="32" height="32" fill="white" />
-													</clipPath>
-												</defs>
-											</svg>
-										</a>
-									<?php endif; ?>
-									<?php if (!empty($author['author_youtube'])): ?>
-										<a href="<?php echo $author['author_youtube'] ?>" class="youtube" target="_blank">
-											<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-												xmlns="http://www.w3.org/2000/svg">
-												<g clip-path="url(#clip0_1_646)">
-													<path
-														d="M2.66675 10.6668C2.66675 9.25234 3.22865 7.89579 4.22885 6.89559C5.22904 5.8954 6.58559 5.3335 8.00008 5.3335H24.0001C25.4146 5.3335 26.7711 5.8954 27.7713 6.89559C28.7715 7.89579 29.3334 9.25234 29.3334 10.6668V21.3335C29.3334 22.748 28.7715 24.1045 27.7713 25.1047C26.7711 26.1049 25.4146 26.6668 24.0001 26.6668H8.00008C6.58559 26.6668 5.22904 26.1049 4.22885 25.1047C3.22865 24.1045 2.66675 22.748 2.66675 21.3335V10.6668Z"
-														stroke="white" stroke-width="1.5" stroke-linecap="round"
-														stroke-linejoin="round" />
-													<path d="M13.3333 12L19.9999 16L13.3333 20V12Z" stroke="white"
-														stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-												</g>
-												<defs>
-													<clipPath id="clip0_1_646">
-														<rect width="32" height="32" fill="white" />
-													</clipPath>
-												</defs>
-											</svg>
-										</a>
-									<?php endif; ?>
-								</div><!-- .header__social -->
+									<a href="" class="" target="_blank">
+										<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_1_635)">
+												<path
+													d="M20 13.3335L14.6667 18.6668L22.6667 26.6668L28 5.3335L4 14.6668L9.33333 17.3335L12 25.3335L16 20.0002"
+													stroke="white" stroke-width="1.5" stroke-linecap="round"
+													stroke-linejoin="round" />
+											</g>
+											<defs>
+												<clipPath id="clip0_1_635">
+													<rect width="32" height="32" fill="white" />
+												</clipPath>
+											</defs>
+										</svg>
+									</a>
+									<a href="" class="" target="_blank">
+										<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_1_638)">
+												<path
+													d="M5.33325 10.6668C5.33325 9.25234 5.89515 7.89579 6.89535 6.89559C7.89554 5.8954 9.2521 5.3335 10.6666 5.3335H21.3333C22.7477 5.3335 24.1043 5.8954 25.1045 6.89559C26.1047 7.89579 26.6666 9.25234 26.6666 10.6668V21.3335C26.6666 22.748 26.1047 24.1045 25.1045 25.1047C24.1043 26.1049 22.7477 26.6668 21.3333 26.6668H10.6666C9.2521 26.6668 7.89554 26.1049 6.89535 25.1047C5.89515 24.1045 5.33325 22.748 5.33325 21.3335V10.6668Z"
+													stroke="white" stroke-width="1.5" stroke-linecap="round"
+													stroke-linejoin="round" />
+												<path
+													d="M12 16C12 17.0609 12.4214 18.0783 13.1716 18.8284C13.9217 19.5786 14.9391 20 16 20C17.0609 20 18.0783 19.5786 18.8284 18.8284C19.5786 18.0783 20 17.0609 20 16C20 14.9391 19.5786 13.9217 18.8284 13.1716C18.0783 12.4214 17.0609 12 16 12C14.9391 12 13.9217 12.4214 13.1716 13.1716C12.4214 13.9217 12 14.9391 12 16Z"
+													stroke="white" stroke-width="1.5" stroke-linecap="round"
+													stroke-linejoin="round" />
+												<path d="M22 10V10.0133" stroke="white" stroke-width="1.5"
+													stroke-linecap="round" stroke-linejoin="round" />
+											</g>
+											<defs>
+												<clipPath id="clip0_1_638">
+													<rect width="32" height="32" fill="white" />
+												</clipPath>
+											</defs>
+										</svg>
+									</a>
+									<a href="" class="" target="_blank">
+										<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_1_643)">
+												<path
+													d="M9.33325 13.3333V18.6667H13.3333V28H18.6666V18.6667H22.6666L23.9999 13.3333H18.6666V10.6667C18.6666 10.313 18.8071 9.97391 19.0571 9.72386C19.3072 9.47381 19.6463 9.33333 19.9999 9.33333H23.9999V4H19.9999C18.2318 4 16.5361 4.70238 15.2859 5.95262C14.0356 7.20286 13.3333 8.89856 13.3333 10.6667V13.3333H9.33325Z"
+													stroke="white" stroke-width="1.5" stroke-linecap="round"
+													stroke-linejoin="round" />
+											</g>
+											<defs>
+												<clipPath id="clip0_1_643">
+													<rect width="32" height="32" fill="white" />
+												</clipPath>
+											</defs>
+										</svg>
+									</a>
+									<a href="" class="" target="_blank">
+										<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_1_646)">
+												<path
+													d="M2.66675 10.6668C2.66675 9.25234 3.22865 7.89579 4.22885 6.89559C5.22904 5.8954 6.58559 5.3335 8.00008 5.3335H24.0001C25.4146 5.3335 26.7711 5.8954 27.7713 6.89559C28.7715 7.89579 29.3334 9.25234 29.3334 10.6668V21.3335C29.3334 22.748 28.7715 24.1045 27.7713 25.1047C26.7711 26.1049 25.4146 26.6668 24.0001 26.6668H8.00008C6.58559 26.6668 5.22904 26.1049 4.22885 25.1047C3.22865 24.1045 2.66675 22.748 2.66675 21.3335V10.6668Z"
+													stroke="white" stroke-width="1.5" stroke-linecap="round"
+													stroke-linejoin="round" />
+												<path d="M13.3333 12L19.9999 16L13.3333 20V12Z" stroke="white"
+													stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+											</g>
+											<defs>
+												<clipPath id="clip0_1_646">
+													<rect width="32" height="32" fill="white" />
+												</clipPath>
+											</defs>
+										</svg>
+									</a>
+								</div>
 							</div>
 						</div>
 
@@ -181,56 +184,74 @@ get_header();
 				<h2 class="decor-left">
 					Блог
 				</h2>
-				<a class="button" href="<?php echo esc_url(get_post_type_archive_link('post')); ?>">
-					<?php esc_html_e('See all news', 'businnesdrive'); ?>
-				</a>
+				<button class="button">Дивитись усі новини</button>
 				<ul class="blog__list">
-					<?php
-					// Параметры запроса
-					$args = array(
-						'post_type' => array('post', 'news'), // Стандартные посты и кастомные 'news'
-						'posts_per_page' => 3, // Количество постов для вывода
-						'orderby' => 'date', // Сортировка по дате
-						'order' => 'DESC', // В порядке убывания (новые посты первыми)
-					);
-
-					$query = new WP_Query($args);
-					$counter = 0; // Счётчик для отслеживания первого поста
-					
-					if ($query->have_posts()):
-						while ($query->have_posts()):
-							$query->the_post();
-							$counter++; // Увеличиваем счётчик для каждого поста
-					
-							// Получаем URL миниатюры поста (если есть)
-							$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-
-							?>
-							<li
-								style="background-image: url(<?php echo esc_url($thumbnail_url ? $thumbnail_url : 'assets/images/single.jpg'); ?>);">
-								<div class="top">
-									<h4><?php echo esc_html(get_post_type() == 'news' ? pll__('Новина') : pll__('Стаття')); ?>
-									</h4>
-									<div class="info">
-										<span class="date"><?php echo get_the_date('j F Y'); ?></span>
-										<span class="time"><?php echo get_the_time('H:i'); ?></span>
-									</div>
-								</div>
-								<div class="bottom">
-									<a class="blog__link" href="<?php the_permalink(); ?>">
-										<h5><?php the_title(); ?></h5>
-									</a>
-									<div><?php the_excerpt(); ?></div>
-								</div>
-							</li>
-
-							<?php
-						endwhile;
-					else: ?>
-						<p>Постов не найдено</p>
-					<?php endif; ?>
-
-					<?php wp_reset_postdata(); // Сброс запроса ?>
+					<li
+						style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/blog.jpg');">
+						<div class="top">
+							<h4>Новина</h4>
+							<div class="info">
+								<span class="date">31 липня 2024</span>
+								<span class="time">16:30</span>
+							</div>
+						</div>
+						<div class="bottom">
+							<a class="blog__link" href="#">
+								<h5>Назва статті 1</h5>
+							</a>
+							<p>
+								Більшість відомих генераторів Lorem Ipsum в Мережі генерують текст шляхом
+								повторення
+								наперед заданих послідовностей Lorem Ipsum. Принципова відмінність цього
+								генератора
+								робить його першим справжнім генератором Lorem Ipsum.
+							</p>
+						</div>
+					</li>
+					<li
+						style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/blog.jpg');">
+						<div class="top">
+							<h4>Новина</h4>
+							<div class="info">
+								<span class="date">31 липня 2024</span>
+								<span class="time">16:30</span>
+							</div>
+						</div>
+						<div class="bottom">
+							<a class="blog__link" href="#">
+								<h5>Назва статті 1</h5>
+							</a>
+							<p>
+								Більшість відомих генераторів Lorem Ipsum в Мережі генерують текст шляхом
+								повторення
+								наперед заданих послідовностей Lorem Ipsum. Принципова відмінність цього
+								генератора
+								робить його першим справжнім генератором Lorem Ipsum.
+							</p>
+						</div>
+					</li>
+					<li
+						style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/blog.jpg');">
+						<div class="top">
+							<h4>Новина</h4>
+							<div class="info">
+								<span class="date">31 липня 2024</span>
+								<span class="time">16:30</span>
+							</div>
+						</div>
+						<div class="bottom">
+							<a class="blog__link" href="#">
+								<h5>Назва статті 1</h5>
+							</a>
+							<p>
+								Більшість відомих генераторів Lorem Ipsum в Мережі генерують текст шляхом
+								повторення
+								наперед заданих послідовностей Lorem Ipsum. Принципова відмінність цього
+								генератора
+								робить його першим справжнім генератором Lorem Ipsum.
+							</p>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -255,7 +276,7 @@ get_header();
 					<input type="tel" id="phone" name="phone" required placeholder="+380 00 000 00 00">
 					<p>телефон</p>
 				</label>
-				<button class="open open-textarea" type="button">
+				<button class="open" id="openTextArea" type="button">
 					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clip-path="url(#clip0_181_1649)">
 							<path d="M5.33325 6H10.6666" stroke="#1397D6" stroke-width="1.5" stroke-linecap="round"
@@ -274,7 +295,7 @@ get_header();
 					</svg>
 					Додати коментар
 				</button>
-				<label for="comments" class="hidden-area">
+				<label for="comments" id="hiddenArea">
 					<textarea id="comments" name="comments" rows="4" placeholder="Коментар"></textarea>
 					<p>Коментар</p>
 				</label>

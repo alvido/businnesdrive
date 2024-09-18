@@ -350,10 +350,3 @@ function add_custom_query_vars($vars)
 	return $vars;
 }
 add_filter('query_vars', 'add_custom_query_vars');
-
-
-function add_excerpt_support_for_pages()
-{
-	add_post_type_support('page', 'excerpt');
-}
-add_action('init', 'add_excerpt_support_for_pages');
