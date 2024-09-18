@@ -50,9 +50,9 @@ function businnesdrive_setup()
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-header' => esc_html__('Primary', 'businnesdrive'),
-			'menu-footer' => esc_html__('Footer', 'businnesdrive'),
-			'menu-mobile' => esc_html__('Mobile', 'businnesdrive'),
+			'header-menu' => esc_html__('Primary', 'businnesdrive'),
+			'footer-menu' => esc_html__('Footer', 'businnesdrive'),
+			// 'language-menu' => esc_html__('Language', 'businnesdrive'),
 		)
 	);
 
@@ -160,6 +160,15 @@ function businnesdrive_widgets_init()
 			'after_title' => '</h2>',
 		)
 	);
+	register_sidebar(array(
+		'name' => __('Footer First  column', 'businnesdrive'),
+		'id' => 'footer-1',
+		'description' => __('Widgets for the footer', 'businnesdrive'),
+		'before_widget' => '',
+		'after_widget' => '',
+		'before_title' => '<h4 class="widget-title">',
+		'after_title' => ' </h4>',
+	));
 }
 add_action('widgets_init', 'businnesdrive_widgets_init');
 
@@ -254,3 +263,97 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
 	return $data;
 }
 // Отображение SVG
+
+
+// Custom post
+function create_custom_post_type()
+{
+	register_post_type(
+		'news',
+		array(
+			'labels' => array(
+				'name' => __('News'),
+				'singular_name' => __('News'),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'news'),
+			'show_in_rest' => true,
+			'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
+			'pll_the_language' => true, // Добавляем поддержку Polylang
+		)
+	);
+}
+add_action('init', 'create_custom_post_type');
+
+// Custom post
+
+function create_custom_taxonomy()
+{
+	$labels = array(
+		'name' => __('Categories News', 'businnesdrive'), // Назва таксономії в адмінці
+		'singular_name' => __('Category News', 'businnesdrive'), // Назва одного терміну
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'hierarchical' => true, // Це робить таксономію ієрархічною, схожою на категорії
+		'rewrite' => array('slug' => 'news_category'), // Власний slug для URL
+		'show_admin_column' => true, // Показувати колонку "Категорія" в адмінці
+		'show_in_rest' => true,
+		'pll_the_language' => true, // Добавляем поддержку Polylang
+	);
+
+	register_taxonomy('news_category', 'news', $args);
+}
+
+add_action('init', 'create_custom_taxonomy');
+
+
+// Регистрация строки для перевода
+function my_register_strings()
+{
+	pll_register_string('post_name', 'Новина', 'Theme Texts');
+	pll_register_string('news_name', 'Стаття', 'Theme Texts');
+	pll_register_string('no_category', 'Без категорії', 'Theme Texts');
+	pll_register_string('published', 'Опубліковано', 'Theme Texts');
+	pll_register_string('privacy-policy', 'Політика конфіденційності:', 'Theme Texts');
+	pll_register_string('terms-of-use', 'Умови використання:', 'Theme Texts');
+	pll_register_string('legal-document', 'Юридичний документ', 'Theme Texts');
+	// pll_register_string('seatch-results', 'Пошук Результатів за:', 'businnesdrive');
+	// pll_register_string('search_results_label', 'Пошук Результатів за:', 'Your Theme or Plugin Name');
+	pll_register_string('Please choose an option', 'Please choose an option', 'Contact Form 7');
+}
+add_action('init', 'my_register_strings');
+
+function register_strings_for_translation()
+{
+	if (function_exists('pll_register_string')) {
+		pll_register_string('search_results_label', 'Пошук Результатів за:', 'Your Theme or Plugin Name');
+	}
+}
+add_action('init', 'register_strings_for_translation');
+
+
+// add_filter('wpcf7_form_elements', function ($content) {
+// 	$content = str_replace('Please choose an option', pll__('Please choose an option'), $content);
+// 	return $content;
+// });
+
+
+
+function add_custom_query_vars($vars)
+{
+	$vars[] = 'paged_news';
+	$vars[] = 'paged_posts';
+	return $vars;
+}
+add_filter('query_vars', 'add_custom_query_vars');
+
+
+function add_excerpt_support_for_pages()
+{
+	add_post_type_support('page', 'excerpt');
+}
+add_action('init', 'add_excerpt_support_for_pages');

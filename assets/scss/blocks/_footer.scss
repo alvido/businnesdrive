@@ -32,7 +32,7 @@
     }
 
     & .column {
-        max-width: 400px;
+        max-width: 40%;
         display: flex;
         align-items: flex-start;
         flex-direction: column;
@@ -44,7 +44,11 @@
         &.info {
             flex-direction: row;
             justify-content: space-between;
-            gap: 120px;
+            gap: clamp(1.25rem, -0.951rem + 9.39vw, 7.5rem);
+        }
+
+        & .footer__nav {
+            max-width: 200px;
         }
     }
 
@@ -75,9 +79,20 @@
         padding: 24px 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 20px;
         justify-content: space-between;
         border-top: 1px solid #00B6ED26;
+
+        @include phone {
+            flex-direction: column;
+        }
+
+        & p {
+            @include phone {
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
 
 }

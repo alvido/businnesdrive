@@ -86,16 +86,29 @@
         }
 
         &>li {
+            position: relative;
+            z-index: 0;
             padding: 32px 24px;
             min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background: radial-gradient(97.17% 102.33% at 94.68% -2.33%, rgba(137, 137, 137, 0) 0%, rgba(137, 137, 137, 0.15) 100%), linear-gradient(0deg, #030A16, #030A16);
 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+                opacity: .6;
+                background: radial-gradient(97.17% 102.33% at 94.68% -2.33%, rgba(137, 137, 137, 0) 0%, rgba(137, 137, 137, 0.15) 100%), linear-gradient(0deg, #030A16, #030A16);
+            }
 
             @include tablet {
                 max-width: calc(50% - 10px);
@@ -157,6 +170,22 @@
         align-items: center;
         justify-content: space-between;
 
+        & .pagination__button {
+            @include reset-button;
+            @include flex-center;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+            cursor: default;
+            gap: 16px;
+
+            & span {
+                @include tablet {
+                    display: none;
+                }
+            }
+        }
+
         &__list {
             display: flex;
             align-items: center;
@@ -164,14 +193,29 @@
         }
 
         & .page-numbers {
+            padding: 0 10px;
             @include flex-center;
-            @include squere(40px);
+            width: 40px;
+            height: 40px;
             color: var(--color-black);
             cursor: pointer;
 
             @include hover {
                 background-color: var(--category-blue);
                 color: var(--color-white);
+            }
+
+            &.dots {
+                @include hover {
+                    cursor: default;
+                    background-color: var(--category-white);
+                    color: var(--color-black);
+                }
+            }
+
+            &.next,
+            &.prev {
+                width: auto;
             }
 
             &.current {
@@ -224,6 +268,7 @@
 
             &>li {
                 position: relative;
+                z-index: 0;
                 display: flex;
                 gap: 20px;
 
@@ -240,11 +285,22 @@
                     padding: 32px 24px;
                     grid-column: 1 / 2;
                     grid-row: 1 / 4;
-                    background: radial-gradient(97.17% 102.33% at 94.68% -2.33%, rgba(137, 137, 137, 0) 0%, rgba(137, 137, 137, 0.15) 100%), linear-gradient(0deg, #030A16, #030A16);
 
                     background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        z-index: -1;
+                        opacity: .4;
+                        background: radial-gradient(97.17% 102.33% at 94.68% -2.33%, rgba(137, 137, 137, 0) 0%, rgba(137, 137, 137, 0.15) 100%), linear-gradient(0deg, #030A16, #030A16);
+                    }
 
                     @include tablet {
                         height: 500px;
@@ -275,7 +331,7 @@
 
                 & img {
                     width: 180px;
-                    height: 180px;
+                    height: 100%;
                     object-fit: cover;
 
                     @include phone {
@@ -345,6 +401,13 @@
             }
         }
     }
+
+    & h1 {
+
+        & span {
+            @include fluid-text(48, 20);
+        }
+    }
 }
 
 .categories__list {
@@ -359,7 +422,13 @@
     }
 
     & li {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--color-white);
         @include flex-center;
+        padding: 4px 10px;
         color: var(--color-white);
         background: var(--color-blue);
         transition-duration: var(--transition-duration);
@@ -380,13 +449,6 @@
             background: var(--color-black);
         }
 
-        & a {
-            padding: 4px 10px;
-            font-family: "Inter", sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--color-white);
-        }
+        & a {}
     }
 }

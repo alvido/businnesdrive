@@ -230,13 +230,17 @@ form {
     }
 
     &.search__form {
-        margin: 0;
-        position: absolute;
-        top: 12px;
-        right: 0px;
+        position: relative;
 
-        @include tablet {
-            top: 0;
+        &.absolute {
+            margin: 0;
+            position: absolute;
+            top: 12px;
+            right: 0px;
+
+            @include tablet {
+                top: 0;
+            }
         }
 
         @include mobile {

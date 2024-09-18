@@ -1,13 +1,8 @@
 .header {
     position: relative;
     z-index: 1;
-    padding: 24px 0;
     color: var(--color-white);
     background: var(--color-black);
-
-    @include phone {
-        padding: 20px 0;
-    }
 
     &.home {
         position: absolute;
@@ -33,9 +28,15 @@
     }
 
     &__branding {
+        padding-block: 24px;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        @include phone {
+            padding-block: 20px;
+        }
     }
 
     // &__social {
@@ -94,7 +95,9 @@
         justify-content: flex-end;
     }
 
-    & a {
+    & li {
+
+        @include flex-center;
         font-size: 16px;
         opacity: .5;
         text-transform: uppercase;
@@ -104,7 +107,7 @@
             opacity: 1;
         }
 
-        &.active {
+        &.current-lang {
             opacity: 1;
         }
     }

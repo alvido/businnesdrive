@@ -46,7 +46,6 @@ h6 {
 h1 {
     @include fluid-text(64, 46);
     letter-spacing: -0.02em;
-    text-align: center;
 
     & span {
         @include fluid-text(64, 40);

@@ -11,6 +11,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 30px;
+    overflow: auto;
     background: var(--color-black);
     transition-duration: var(--transition-duration);
 
