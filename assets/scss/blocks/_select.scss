@@ -1,9 +1,17 @@
 .select2 {
     width: 100% !important;
+
+    &.error {
+        border: 1px solid var(--color-red);
+    }
 }
 
 .select2-results__option--selectable {
     background: var(--color-gray);
+}
+
+.select2-container {
+    z-index: 1;
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
@@ -53,10 +61,14 @@
         text-transform: capitalize;
         padding: 16px 24px;
 
-        color: var(--color-white);
+        // color: var(--color-white);
 
 
     }
+}
+
+.select2-dropdown {
+    margin-top: 30px;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -77,6 +89,10 @@
         background: url(../images/icon/chevron-black.svg) no-repeat center;
         transition: all .3s ease;
     }
+}
+
+.select2-container--open {
+    z-index: 2;
 }
 
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {

@@ -2,23 +2,26 @@
     @include flex-center;
     display: none;
     position: fixed;
+    top: 0;
     left: 0;
     right: 0;
-    top: 0;
     bottom: 0;
-    z-index: 3;
+    // height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    z-index: 2;
     background: #FFFFFF24;
 
     &.show {
         display: flex;
+
+        & .select2-container {
+            z-index: 2;
+        }
     }
-
-
 
     &__wrapper {
         width: 100%;
         max-width: 1100px;
-        max-height: 100vh;
+        max-height: 90vh;
         margin: 26px auto;
         display: flex;
         flex-direction: column;
@@ -48,11 +51,16 @@
     }
 
     &__footer {
+        width: 100%;
         margin-top: auto;
         display: flex;
         align-items: center;
         justify-content: flex-end;
         gap: 24px;
+
+        @include mobile {
+            padding: 16px 0;
+        }
 
         @include phone {
 
@@ -73,16 +81,23 @@
                 }
             }
         }
+
+        & .button--transparent {
+            @include hover {
+                color: var(--color-white);
+            }
+        }
     }
 
     &__content {
-        padding: 32px;
+        // overflow: auto;
+
+        margin-top: 32px;
         display: flex;
         flex-direction: column;
         gap: 32px;
 
         @include mobile {
-            padding: 32px 20px;
             gap: 24px;
         }
     }
@@ -92,8 +107,10 @@
         align-items: center;
         justify-content: space-between;
         gap: 24px;
+        padding: 0 32px;
 
         @include mobile {
+            padding: 0px 20px;
             gap: 12px;
         }
 
@@ -171,11 +188,20 @@
     }
 
     &__form {
-        max-width: 500px;
-        width: 100%;
-        margin: 0 auto;
+        // max-height: 50vh;
+
+        & form {
+            width: 100%;
+
+            @include phone {
+                padding: 0 20px;
+            }
+        }
+
 
         & label {
+            max-width: 500px;
+            margin: 0 auto;
             color: var(--color-gray);
         }
 
@@ -190,10 +216,14 @@
             border: none;
         }
 
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
+        & .select2-container--default .select2-selection--single .select2-selection__arrow {
             & b {
                 background: url(../images/icon/chevron.svg) no-repeat center;
             }
+        }
+
+        & .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: var(--color-white);
         }
 
         & .open {

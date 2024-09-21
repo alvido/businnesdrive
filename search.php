@@ -40,7 +40,7 @@ $query = new WP_Query($args);
 				</h1>
 				<!-- Объединенная форма поиска для постов и новостей -->
 				<form class="search__form" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-					<input class="search__input" type="text" name="s" id="s" placeholder="Пошук" />
+					<input class="search__input" type="text" name="s" id="s" placeholder="<?php echo pll__('Пошук') ?>" />
 					<button class="search__btn" type="submit">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<g clip-path="url(#clip0_181_1032)">
@@ -135,6 +135,8 @@ $query = new WP_Query($args);
 			?>
 		</div>
 	</section>
+
+    <?php get_template_part('template-parts/content', 'feedback'); ?>
 </main><!-- #main -->
 
 <?php

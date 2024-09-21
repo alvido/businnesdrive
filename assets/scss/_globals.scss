@@ -12,6 +12,7 @@ body {
     color: var(--color-black);
     background: var(--color-white);
 
+    &.block,
     &.lock {
         max-height: 100vh;
         overflow: hidden;

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Выбираем бургер-кнопку и навигацию
   let burgerButton = document.getElementById("burgerButton");
   let navigation = document.getElementById("site-navigation");
+  let links = document.querySelectorAll(".navigation__list a");
   let body = document.querySelector("body");
 
   if (burgerButton) {
@@ -23,6 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
       navigation.classList.remove("navigation--active");
       body.classList.remove("lock");
     }
+  });
+
+  links.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      burgerButton.classList.remove("burger--active");
+      navigation.classList.remove("navigation--active");
+      console.log("link", link);
+    });
   });
 
 });
@@ -58,7 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const openQuiz = document.getElementById("openQuiz");
 
-  openQuiz.addEventListener("click", startQuiz);
+  if (openQuiz) {
+    openQuiz.addEventListener("click", startQuiz);
+  }
 
   function startQuiz() {
     const quiz = document.querySelector(".quiz");
@@ -68,11 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
       quiz.classList.add("show");
 
       if (body) {
-        console.log("Body найден:", body);
-        body.classList.add("lock");
-        console.log("Класс 'lock' добавлен. Текущий класс body:", body.className);
-      } else {
-        console.error("Body не найден.");
+        body.classList.add("block");
       }
     }
   }
@@ -157,23 +164,118 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // swiper
 
+// radiomark
+document.addEventListener("DOMContentLoaded", function () {
+  const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+  // Установка события change для радиокнопок
+  radioButtons.forEach((radio) => {
+    radio.addEventListener('change', function () {
+      updateRadiomarkState();
+    });
+
+    // Проверка на инициализацию состояния при загрузке страницы
+    if (radio.checked) {
+      const radiomark = radio.closest('.custom-radio').querySelector('.radiomark');
+      if (radiomark) {
+        radiomark.classList.add('active');
+      }
+    }
+  });
+
+  // Обработчик клика для radiomark
+  const radiomarks = document.querySelectorAll('.radiomark');
+  radiomarks.forEach((mark) => {
+    mark.addEventListener('click', function () {
+      const radioInput = this.closest('.custom-radio').querySelector('input[type="radio"]');
+      if (radioInput) {
+        radioInput.checked = true; // Устанавливаем состояние checked
+        radioInput.dispatchEvent(new Event('change')); // Вызываем событие change
+      }
+    });
+  });
+
+  function updateRadiomarkState() {
+    // Удаляем класс active у всех radiomark
+    const allRadiomarks = document.querySelectorAll('.radiomark');
+    allRadiomarks.forEach(mark => mark.classList.remove('active'));
+
+    // Добавляем класс active к текущему radiomark
+    radioButtons.forEach((radio) => {
+      if (radio.checked) {
+        const radiomark = radio.closest('.custom-radio').querySelector('.radiomark');
+        if (radiomark) {
+          radiomark.classList.add('active');
+        }
+      }
+    });
+  }
+});
+//radiomark
+//checkmark
+document.addEventListener("DOMContentLoaded", function () {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+  checkboxes.forEach((checkbox) => {
+    // Обработчик событий change для чекбоксов
+    checkbox.addEventListener('change', function () {
+      updateCheckmarkState(this);
+    });
+
+    // Проверка на инициализацию состояния при загрузке страницы
+    if (checkbox.checked) {
+      const checkmark = checkbox.closest('.custom-checkbox').querySelector('.checkmark');
+      if (checkmark) {
+        checkmark.classList.add('active');
+      }
+    }
+  });
+
+  // Обработчик клика для checkmark
+  const checkmarks = document.querySelectorAll('.checkmark');
+  checkmarks.forEach((mark) => {
+    mark.addEventListener('click', function () {
+      const checkInput = this.closest('.custom-checkbox').querySelector('input[type="checkbox"]');
+      if (checkInput) {
+        checkInput.checked = !checkInput.checked; // Переключаем состояние checked
+        checkInput.dispatchEvent(new Event('change')); // Вызываем событие change
+      }
+    });
+  });
+
+  function updateCheckmarkState(checkbox) {
+    const checkmark = checkbox.closest('.custom-checkbox').querySelector('.checkmark');
+    if (checkmark) {
+      if (checkbox.checked) {
+        checkmark.classList.add('active'); // Добавляем класс active если чекбокс отмечен
+      } else {
+        checkmark.classList.remove('active'); // Убираем класс active если чекбокс не отмечен
+      }
+    }
+  }
+});
+//checkmark
+
 
 // textarea show //
 document.addEventListener("DOMContentLoaded", function () {
-  let openTextArea = document.querySelectorAll(".open-textarea");
+  let openTextAreaButtons = document.querySelectorAll(".open-textarea");
 
-  if (openTextArea) {
-    openTextArea.forEach((open) => {
-      open.addEventListener("click", function (e) {
-        e.stopPropagation(); // Stop event bubbling
-        let nextHiddenArea = this.nextElementSibling; // Get the next sibling element
+
+  if (openTextAreaButtons) {
+    openTextAreaButtons.forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.stopPropagation(); // Остановить всплытие события
+        const nextHiddenArea = this.closest('label').nextElementSibling; // Получаем следующий элемент-сосед
+
         if (nextHiddenArea && nextHiddenArea.classList.contains("hidden-area")) {
-          nextHiddenArea.classList.toggle("show"); // Toggle 'show' class
+          nextHiddenArea.classList.toggle("show"); // Переключаем класс 'show'
         }
       });
     });
   }
 });
+
 
 //
 
@@ -198,41 +300,86 @@ $(document).ready(function () {
     $(".select__input").select2({
       minimumResultsForSearch: Infinity,
     });
-    console.log("Select2 подключен и работает.");
-  } else {
-    console.error("Select2 не подключен.");
   }
 });
 
 //
 
-// //faq collapse
-// $(document).ready(function () {
-//   $(".faq__item").on("click", function () {
-//     faqCollapse($(this));
-//   });
-// });
 
-// function faqCollapse($element) {
-//   $element.toggleClass("active");
-//   // Находим родителя и добавляем ему класс
-// }
-// //faq collapse
+//
+document.addEventListener("DOMContentLoaded", function () {
+  const forms = document.querySelectorAll("form");
 
-// //порядковый номер
-// // Получаем все элементы с классом form__step
-// const steps = document.querySelectorAll(".form__step");
+  forms.forEach(function (form) {
+    form.addEventListener("submit", function (event) {
+      let isValid = true;
+      const requiredFields = form.querySelectorAll("[required]");
 
-// // Проходимся по каждому элементу и добавляем порядковый номер перед заголовком <h3>
-// steps.forEach((step, index) => {
-//   // Создаем новый элемент span
-//   const stepNumber = document.createElement("span");
-//   // Задаем текст содержимого как порядковый номер
-//   stepNumber.textContent = `${index + 1}. `;
-//   // Вставляем span перед элементом <h3>
-//   step.querySelector("h3").insertAdjacentElement("afterbegin", stepNumber);
-// });
-// //
+      requiredFields.forEach(function (field) {
+        field.classList.remove("error");
+
+        if (!validateField(field)) {
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        event.preventDefault();
+      }
+    });
+  });
+
+  function validateField(field) {
+    let isValid = true;
+
+    // Проверка на заполненность для текстовых, email, number, tel и textarea
+    if (["text", "email", "number", "tel"].includes(field.type) || field.tagName.toLowerCase() === "textarea") {
+      if (!field.value.trim()) {
+        field.classList.add("error");
+        isValid = false;
+      }
+    }
+
+    // Проверка для select
+    if (field.tagName.toLowerCase() === "select") {
+      if (field.value === "") {
+        field.classList.add("error");
+        isValid = false;
+
+        const select2 = field.closest('form').querySelector('.select2');
+        if (select2) {
+          select2.classList.add('error');
+        }
+      } else {
+        const select2 = field.closest('form').querySelector('.select2');
+        if (select2) {
+          select2.classList.remove('error');
+        }
+      }
+    }
+
+    // Проверка для радиокнопок
+    if (field.type === "radio") {
+      const radios = field.closest('form').querySelectorAll(`input[name="${field.name}"]`);
+      let radioChecked = Array.from(radios).some(radio => radio.checked);
+
+      if (!radioChecked) {
+        radios.forEach(function (radio) {
+          radio.classList.add("error");
+        });
+        isValid = false;
+      } else {
+        radios.forEach(function (radio) {
+          radio.classList.remove("error");
+        });
+      }
+    }
+
+    return isValid;
+  }
+});
+
+//
 
 
 // quiz logic
@@ -242,79 +389,157 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentStep = 0;
 
   const quiz = document.querySelector(".quiz");
-  const stepNumberEl = document.getElementById("stepNumber");
-  const stepTitleEl = document.getElementById("stepTitle");
-  const currentStepEl = document.getElementById("currentStep");
-  const totalStepsEl = document.getElementById("totalSteps");
-  const progressBar = document.getElementById("progressBar");
 
-  const closeBtn = document.querySelector(".quiz .close");
-  const nextBtn = document.querySelector(".nextBtn");
-  const prevButtons = document.querySelectorAll(".prevBtn");
-  const submitBtn = document.querySelector(".submitBtn");
+  if (quiz) {
+    const stepNumberEl = document.getElementById("stepNumber");
+    const stepTitleEl = document.getElementById("stepTitle");
+    const currentStepEl = document.getElementById("currentStep");
+    const totalStepsEl = document.getElementById("totalSteps");
+    const progressBar = document.getElementById("progressBar");
 
-  // Установить общее количество шагов
-  totalStepsEl.textContent = totalSteps;
+    const closeBtn = document.querySelector(".quiz .close");
+    const nextBtn = document.querySelector(".nextBtn");
+    const prevButtons = document.querySelectorAll(".prevBtn");
+    const submitBtn = document.querySelector(".submitBtn");
 
-  function showStep(stepIndex) {
-    steps.forEach((step, index) => {
-      step.style.display = index === stepIndex ? "flex" : "none";
+    if (totalStepsEl) {
+      // Установить общее количество шагов
+      totalStepsEl.textContent = totalSteps;
+    }
+
+    function showStep(stepIndex) {
+      steps.forEach((step, index) => {
+        step.style.display = index === stepIndex ? "flex" : "none";
+      });
+
+      // Обновляем номер шага и заголовок
+      stepNumberEl.textContent = stepIndex + 1;
+      currentStepEl.textContent = stepIndex + 1;
+      stepTitleEl.textContent = steps[stepIndex].getAttribute("data-step-title");
+
+      // Обновляем прогресс-бар
+      const progressPercent = ((stepIndex + 1) / totalSteps) * 100;
+      progressBar.style.setProperty('--progress-width', progressPercent + '%');
+
+      // Управляем видимостью кнопок
+      if (stepIndex === totalSteps - 1) {
+        // Если последний шаг
+        nextBtn.style.display = "none";
+        submitBtn.style.display = "flex";
+      } else {
+        nextBtn.style.display = "flex";
+        submitBtn.style.display = "none";
+      }
+
+      // Управляем видимостью кнопки "Назад"
+      prevButtons.forEach(prevBtn => {
+        prevBtn.style.display = stepIndex > 0 ? "flex" : "none";
+      });
+    }
+
+    function closeQuiz() {
+      if (closeBtn) {
+        quiz.classList.remove("show");
+        let body = document.querySelector("body");
+
+        body.classList.add("block");
+      }
+    }
+
+    function validateCurrentStep() {
+      // Ищем все обязательные поля: input, textarea, select и radio
+      const currentInputs = steps[currentStep].querySelectorAll('input[required], textarea[required], select[required]');
+      let isValid = true;
+
+      currentInputs.forEach(input => {
+        // Проверка для текстовых полей и текстовых областей
+        if (input.type !== 'radio' && !input.value) {
+          isValid = false;
+          input.classList.add('error'); // Добавьте стиль для визуализации ошибки
+          const select2 = input.closest('.step').querySelector('.select2'); // Находим соседний элемент select2
+          if (select2) {
+            select2.classList.add('error'); // Добавляем класс error к select2
+          }
+        } else {
+          input.classList.remove('error'); // Уберите ошибку, если поле заполнено
+          const select2 = input.closest('.step').querySelector('.select2');
+          if (select2) {
+            select2.classList.remove('error'); // Убираем класс error, если значение выбрано
+          }
+        }
+
+        // Проверка для radio buttons
+        if (input.type === 'radio') {
+          const radioGroup = steps[currentStep].querySelectorAll(`input[name="${input.name}"]`);
+          const isAnyChecked = Array.from(radioGroup).some(radio => radio.checked);
+          if (!isAnyChecked) {
+            isValid = false;
+            radioGroup[0].classList.add('error'); // Добавьте стиль для визуализации ошибки (можно применить к любому из группы)
+          } else {
+            radioGroup[0].classList.remove('error'); // Уберите ошибку, если хотя бы одно поле выбрано
+          }
+        }
+
+        // Проверка для select
+        if (input.tagName.toLowerCase() === 'select' && !input.value) {
+          isValid = false;
+          input.classList.add('error'); // Добавьте стиль для визуализации ошибки
+          const select2 = input.closest('.step').querySelector('.select2');
+          if (select2) {
+            select2.classList.add('error'); // Добавляем класс error к select2
+          }
+        } else if (input.tagName.toLowerCase() === 'select') {
+          input.classList.remove('error'); // Уберите ошибку, если значение выбрано
+          const select2 = input.closest('.step').querySelector('.select2');
+          if (select2) {
+            select2.classList.remove('error'); // Убираем класс error, если значение выбрано
+          }
+        }
+      });
+
+      return isValid;
+    }
+
+
+
+    function nextStep() {
+      if (validateCurrentStep()) { // Проверка обязательных полей
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+        }
+      } else {
+        // alert('Пожалуйста, заполните все обязательные поля.'); // Сообщение об ошибке
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+
+    closeBtn.addEventListener("click", closeQuiz);
+    nextBtn.addEventListener("click", nextStep);
+    prevButtons.forEach(button => {
+      button.addEventListener("click", prevStep);
     });
 
-    // Обновляем номер шага и заголовок
-    stepNumberEl.textContent = stepIndex + 1;
-    currentStepEl.textContent = stepIndex + 1;
-    stepTitleEl.textContent = steps[stepIndex].getAttribute("data-step-title");
+    submitBtn.addEventListener('click', function () {
+      const form = document.querySelector('.quiz__form form');
+      if (validateCurrentStep()) { // Проверка обязательных полей
+        // form.submit(); // Отправить форму
+      } else {
+        // alert('Пожалуйста, заполните все обязательные поля.'); // Сообщение об ошибке
+      }
 
-    // Обновляем прогресс-бар
-    const progressPercent = ((stepIndex + 1) / totalSteps) * 100;
-    progressBar.style.setProperty('--progress-width', progressPercent + '%');
-
-    // Управляем видимостью кнопок
-    if (stepIndex === totalSteps - 1) {
-      // Если последний шаг
-      nextBtn.style.display = "none";
-      submitBtn.style.display = "flex";
-    } else {
-      nextBtn.style.display = "flex";
-      submitBtn.style.display = "none";
-    }
-
-    // Управляем видимостью кнопки "Назад"
-
-    prevButtons.forEach(prevBtn => {
-      prevBtn.style.display = stepIndex > 0 ? "flex" : "none";
     });
+
+    // Изначально показываем первый шаг
+    showStep(currentStep);
   }
-
-  function closeQuiz() {
-    if (closeBtn) {
-      quiz.classList.remove("show");
-    }
-  }
-
-  function nextStep() {
-    if (currentStep < steps.length - 1) {
-      currentStep++;
-      showStep(currentStep);
-    }
-  }
-
-  function prevStep() {
-    if (currentStep > 0) {
-      currentStep--;
-      showStep(currentStep);
-    }
-  }
-
-  closeBtn.addEventListener("click", closeQuiz);
-  nextBtn.addEventListener("click", nextStep);
-  prevButtons.forEach(button => {
-    button.addEventListener("click", prevStep);
-  });
-
-  // Изначально показываем первый шаг
-  showStep(currentStep);
 });
+
 
 // quiz logic

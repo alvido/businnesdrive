@@ -72,6 +72,10 @@
         & svg {
             color: var(--color-blue);
         }
+
+        & span {
+            display: block;
+        }
     }
 
     &__bottom {

@@ -18,8 +18,6 @@ get_header();
 <main id="primary" class="main site-main">
     <section class="blog blog-top">
         <div class="container">
-            <span class="subtitle">Наш блог</span>
-
             <?php
             // Получаем ID страницы записей (блога)
             $blog_page_id = get_option('page_for_posts');
@@ -34,18 +32,28 @@ get_header();
             // Получаем заголовок и контент страницы
             $translated_title = get_the_title($translated_blog_page_id);
             $translated_content = apply_filters('the_content', $translated_page->post_content);
-            ?>
-            <h1 class="center">
-                <?php echo esc_html($translated_title); ?>
-            </h1>
-            <div class="center">
-                <?php echo $translated_content; ?>
-            </div>
+            // Получаем краткое описание (excerpt) для переведённой страницы
+            $translated_excerpt = apply_filters('get_the_excerpt', $translated_page->post_excerpt);
 
-            <form class="subscription" action="#">
-                <input type="email" placeholder="Введіть свій імейл">
-                <button class="button">Підписатися</button>
-            </form>
+            // Выводим краткое описание
+            if (!empty($translated_excerpt)) {
+                echo '<span class="subtitle">' . esc_html($translated_excerpt) . '</span>';
+            }
+            ?>
+            <h1 class="center"><?php echo esc_html($translated_title); ?></h1>
+            <div class="center"><?php echo $translated_content; ?></div>
+
+            <?php
+            // Получаем значение поля шорткода
+            $shortcode = get_field('shortcode', $blog_page_id);
+
+            // Проверяем, есть ли значение и выводим шорткод
+            if ($shortcode) {
+                echo '<div class="subscription">';
+                echo do_shortcode($shortcode);
+                echo '</div>';
+            }
+            ?>
 
             <ul class="blog-top__list">
                 <?php
@@ -132,7 +140,6 @@ get_header();
 
     <!-- Blog News -->
     <?php
-    // Параметры запроса
     // Для новостей
     $paged_news = (get_query_var('paged_news') > 0) ? get_query_var('paged_news') : 1;
     $args_news = array(
@@ -141,8 +148,6 @@ get_header();
         'paged' => $paged_news
     );
     $query_news = new WP_Query($args_news);
-
-
     // Проверяем наличие постов
     if ($query_news->have_posts()): ?>
         <section class="blog post">
@@ -152,9 +157,10 @@ get_header();
                         Новини
                     </h2>
                     <!-- Форма поиска для постов -->
-                    <form class="search__form absolute" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                    <form class="search__form absolute" role="search" method="get"
+                        action="<?php echo esc_url(home_url('/')); ?>">
                         <input type="hidden" name="post_type" value="news" />
-                        <input class="search__input" type="text" name="s" id="s" placeholder="Пошук" />
+                        <input class="search__input" type="text" name="s" id="s" placeholder="<?php echo pll__('Пошук') ?>" />
                         <button class="search__btn" type="submit">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_181_1032)">
@@ -205,7 +211,8 @@ get_header();
                             <li
                                 style="<?php echo $thumbnail_url ? 'background-image: url(' . esc_url($thumbnail_url) . ');' : ''; ?>">
                                 <div class="top">
-                                    <h4><?php echo esc_html(get_post_type() == 'news' ? pll__('Новина') : pll__('Стаття')); ?></h4>
+                                    <h4><?php echo esc_html(get_post_type() == 'news' ? pll__('Новина') : pll__('Стаття')); ?>
+                                    </h4>
                                     <div class="info">
                                         <span class="date"><?php the_modified_date('F j Y'); ?></span>
                                         <span class="time"><?php the_modified_date('H:i'); ?></span>
@@ -289,7 +296,6 @@ get_header();
 
     <!-- Blog Articles -->
     <?php
-    // Параметры запроса
     // Для статей
     $paged_posts = (get_query_var('paged_posts') > 0) ? get_query_var('paged_posts') : 1;
     $args_posts = array(
@@ -298,7 +304,6 @@ get_header();
         'paged' => $paged_posts
     );
     $query_posts = new WP_Query($args_posts);
-
     // Проверяем наличие постов
     if ($query_posts->have_posts()): ?>
         <section class="blog">
@@ -308,9 +313,10 @@ get_header();
                         Статті
                     </h2>
                     <!-- Форма поиска для постов -->
-                    <form class="search__form absolute" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                    <form class="search__form absolute" role="search" method="get"
+                        action="<?php echo esc_url(home_url('/')); ?>">
                         <input type="hidden" name="post_type" value="post" />
-                        <input class="search__input" type="text" name="s" id="s" placeholder="Пошук" />
+                        <input class="search__input" type="text" name="s" id="s" placeholder="<?php echo pll__('Пошук') ?>" />
                         <button class="search__btn" type="submit">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_181_1032)">
@@ -359,7 +365,8 @@ get_header();
                             <li
                                 style="<?php echo $thumbnail_url ? 'background-image: url(' . esc_url($thumbnail_url) . ');' : ''; ?>">
                                 <div class="top">
-                                    <h4><?php echo esc_html(get_post_type() == 'news' ? pll__('Новина') : pll__('Стаття')); ?></h4>
+                                    <h4><?php echo esc_html(get_post_type() == 'news' ? pll__('Новина') : pll__('Стаття')); ?>
+                                    </h4>
                                     <div class="info">
                                         <span class="date"><?php the_modified_date('F j Y'); ?></span>
                                         <span class="time"><?php the_modified_date('H:i'); ?></span>
@@ -442,6 +449,46 @@ get_header();
     endif;
     ?>
     <!-- Blog Articles -->
+
+
+
+    <?php
+    $form_shortcode = get_field('form_shortcode', $blog_page_id); // Получаем форму
+    $form_title = get_field('form_title', $blog_page_id);
+
+    if (!empty($form_shortcode)): ?>
+        <section class="feedback" id="feedback">
+            <div class="column">
+                <h3><?php echo (esc_html($form_title)); ?></h3>
+                <div class="feedback__form">
+                    <?php echo do_shortcode(esc_html($form_shortcode)); ?>
+                </div>
+            </div>
+            <div class="column dark">
+                <?php
+                $feedback_image = get_field('feedback_image', $blog_page_id);
+                if (!empty($feedback_image)): ?>
+                    <img src="<?php echo esc_url($feedback_image['url']); ?>"
+                        alt="<?php echo esc_attr($feedback_image['alt']); ?>">
+                <?php endif; ?>
+
+                <?php
+                $feedback_title = get_field('feedback_title', $blog_page_id);
+                if (!empty($feedback_title)): ?>
+                    <h3><?php echo esc_html($feedback_title); ?></h3>
+                <?php endif; ?>
+
+                <?php $feedback_text = get_field('feedback_text', $blog_page_id);
+                if ($feedback_text): ?>
+                    <p><?php echo esc_html($feedback_text); ?></p>
+                <?php endif; ?>
+
+                <div class="header__social social">
+                    <?php get_template_part('template-parts/content', 'social'); ?>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
 
 </main><!-- #main -->
 

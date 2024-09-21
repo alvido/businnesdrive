@@ -38,65 +38,8 @@
                 flex-direction: column;
             }
 
-            &:nth-child(even) {
-                flex-direction: row-reverse;
-
-                @include tablet {
-                    flex-direction: column;
-                }
-            }
-
-            & .column {
-                max-width: 50%;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 32px;
-
-                @include tablet {
-                    max-width: 100%;
-                    gap: 16px;
-
-                }
-
-                & img {
-                    width: 100%;
-                    max-width: 600px;
-                    margin: 0 auto;
-                }
-
+            &:first-child {
                 & ul {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 16px;
-
-                    @include mobile {
-                        gap: 14px;
-                    }
-
-                    & li {
-                        position: relative;
-                        display: flex;
-                        gap: 16px;
-
-                        @include mobile {
-                            gap: 14px;
-                        }
-
-                        &::before {
-                            content: "";
-                            display: inline-block;
-                            min-width: 24px;
-                            height: 24px;
-                            background: url(../images/icon/list-style.svg) no-repeat center;
-                        }
-                    }
-                }
-
-                & .service__list {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
@@ -126,6 +69,65 @@
                         }
 
                     }
+                }
+            }
+
+            &:nth-child(even) {
+                flex-direction: row-reverse;
+
+                @include tablet {
+                    flex-direction: column;
+                }
+            }
+
+            & ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                @include mobile {
+                    gap: 14px;
+                }
+
+                & li {
+                    position: relative;
+                    display: flex;
+                    gap: 16px;
+
+                    @include mobile {
+                        gap: 14px;
+                    }
+
+                    &::before {
+                        content: "";
+                        display: inline-block;
+                        min-width: 24px;
+                        height: 24px;
+                        background: url(../images/icon/list-style.svg) no-repeat center;
+                    }
+                }
+            }
+
+            & .column {
+                max-width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 32px;
+
+                @include tablet {
+                    max-width: 100%;
+                    gap: 16px;
+
+                }
+
+                & img {
+                    width: 100%;
+                    max-width: 600px;
+                    margin: 0 auto;
                 }
             }
         }

@@ -15,43 +15,27 @@
 get_header();
 ?>
 
-	<main id="primary" class="main site-main">
-		Индекс
-		<?php
-		if ( have_posts() ) :
+<main id="primary" class="main site-main">
+	<section class="about about-top">
+		<div class="container">
+			<div class="wrapper">
+				<h1 class="center"><?php the_title(); ?></h1>
+				<div class="center decor-bottom"><?php the_excerpt(); ?></div>
+			</div>
+			<?php $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
+			<img src="<?php echo esc_url($thumbnail_url ? $thumbnail_url : ''); ?>" alt="">
+		</div>
+	</section>
+	<section class="about__information">
+		<div class="about__information-inner container">
+			<?php the_content(); ?>
+		</div>
+	</section>
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+	<?php get_template_part('template-parts/content', 'news'); ?>
+    <?php get_template_part('template-parts/content', 'feedback'); ?>
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			// get_template_part( 'template-parts/content', 'none' );
-			the_title();
-
-		endif;
-		?>
-
-	</main><!-- #main -->
+</main><!-- #main -->
 
 <?php
 get_sidebar();
