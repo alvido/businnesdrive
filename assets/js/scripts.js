@@ -167,40 +167,14 @@ document.addEventListener("DOMContentLoaded", function () {
 // radiomark
 document.addEventListener("DOMContentLoaded", function () {
   const radioButtons = document.querySelectorAll('input[type="radio"]');
-
-  // Установка события change для радиокнопок
-  radioButtons.forEach((radio) => {
-    radio.addEventListener('change', function () {
-      updateRadiomarkState();
-    });
-
-    // Проверка на инициализацию состояния при загрузке страницы
-    if (radio.checked) {
-      const radiomark = radio.closest('.custom-radio').querySelector('.radiomark');
-      if (radiomark) {
-        radiomark.classList.add('active');
-      }
-    }
-  });
-
-  // Обработчик клика для radiomark
   const radiomarks = document.querySelectorAll('.radiomark');
-  radiomarks.forEach((mark) => {
-    mark.addEventListener('click', function () {
-      const radioInput = this.closest('.custom-radio').querySelector('input[type="radio"]');
-      if (radioInput) {
-        radioInput.checked = true; // Устанавливаем состояние checked
-        radioInput.dispatchEvent(new Event('change')); // Вызываем событие change
-      }
-    });
-  });
 
+  // Обновление состояния для всех радиокнопок
   function updateRadiomarkState() {
     // Удаляем класс active у всех radiomark
-    const allRadiomarks = document.querySelectorAll('.radiomark');
-    allRadiomarks.forEach(mark => mark.classList.remove('active'));
+    radiomarks.forEach(mark => mark.classList.remove('active'));
 
-    // Добавляем класс active к текущему radiomark
+    // Добавляем класс active к radiomark, соответствующему выбранной радиокнопке
     radioButtons.forEach((radio) => {
       if (radio.checked) {
         const radiomark = radio.closest('.custom-radio').querySelector('.radiomark');
@@ -210,26 +184,49 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // Установка обработчиков событий change и инициализация состояния
+  radioButtons.forEach((radio) => {
+    radio.addEventListener('change', updateRadiomarkState);
+    // Инициализация состояния при загрузке страницы
+    if (radio.checked) {
+      updateRadiomarkState();
+    }
+  });
+
+  // Обработчик клика для radiomark
+  radiomarks.forEach((mark) => {
+    mark.addEventListener('click', function () {
+      const radioInput = this.closest('.custom-radio').querySelector('input[type="radio"]');
+      if (radioInput && !radioInput.checked) {
+        radioInput.checked = true; // Устанавливаем состояние checked
+        radioInput.dispatchEvent(new Event('change')); // Вызываем событие change
+      }
+    });
+  });
 });
+
 //radiomark
 //checkmark
 document.addEventListener("DOMContentLoaded", function () {
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-  checkboxes.forEach((checkbox) => {
-    // Обработчик событий change для чекбоксов
-    checkbox.addEventListener('change', function () {
-      updateCheckmarkState(this);
-    });
-
-    // Проверка на инициализацию состояния при загрузке страницы
-    if (checkbox.checked) {
+  // Обновление состояния checkmark
+  function updateCheckmarkState() {
+    checkboxes.forEach((checkbox) => {
       const checkmark = checkbox.closest('.custom-checkbox').querySelector('.checkmark');
       if (checkmark) {
-        checkmark.classList.add('active');
+        if (checkbox.checked) {
+          checkmark.classList.add('active'); // Добавляем класс active если чекбокс отмечен
+        } else {
+          checkmark.classList.remove('active'); // Убираем класс active если чекбокс не отмечен
+        }
       }
-    }
-  });
+    });
+  }
+
+  // Инициализация состояния при загрузке страницы
+  updateCheckmarkState();
 
   // Обработчик клика для checkmark
   const checkmarks = document.querySelectorAll('.checkmark');
@@ -237,23 +234,18 @@ document.addEventListener("DOMContentLoaded", function () {
     mark.addEventListener('click', function () {
       const checkInput = this.closest('.custom-checkbox').querySelector('input[type="checkbox"]');
       if (checkInput) {
-        checkInput.checked = !checkInput.checked; // Переключаем состояние checked
-        checkInput.dispatchEvent(new Event('change')); // Вызываем событие change
+        // checkInput.checked = !checkInput.checked; // Переключаем состояние checked
+        checkInput.dispatchEvent(new Event('change')); // Вызываем событие change для обновления состояния
       }
     });
   });
 
-  function updateCheckmarkState(checkbox) {
-    const checkmark = checkbox.closest('.custom-checkbox').querySelector('.checkmark');
-    if (checkmark) {
-      if (checkbox.checked) {
-        checkmark.classList.add('active'); // Добавляем класс active если чекбокс отмечен
-      } else {
-        checkmark.classList.remove('active'); // Убираем класс active если чекбокс не отмечен
-      }
-    }
-  }
+  // Обработчик события change для обновления состояния checkmark
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', updateCheckmarkState);
+  });
 });
+
 //checkmark
 
 
