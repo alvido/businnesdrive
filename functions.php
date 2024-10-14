@@ -386,3 +386,16 @@ function add_excerpt_to_pages()
 	add_post_type_support('page', 'excerpt');
 }
 add_action('init', 'add_excerpt_to_pages');
+
+
+//
+function search_filter($query) {
+    if ($query->is_search && !is_admin() && $query->is_main_query()) {
+        // Ограничиваем поиск только кастомным типом постов 'games'
+        $query->set('post_type', 'games');
+    }
+    return $query;
+}
+add_filter('pre_get_posts', 'search_filter');
+
+//
