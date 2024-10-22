@@ -1,0 +1,66 @@
+.navigation {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    z-index: -1;
+    padding: 160px 64px 0;
+    width: 500px;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+    overflow: auto;
+    background: var(--color-black);
+    transition-duration: var(--transition-duration);
+
+    @include phone {
+        width: 100%;
+        padding: 72px 20px 0;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        background: url(../images/nav-bg.png) no-repeat center / cover;
+    }
+
+    &.navigation--active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @include mobile {}
+
+    &__list {
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+
+        @include mobile {
+            gap: 20px;
+        }
+
+        & li {
+            & a {
+                position: relative;
+                display: block;
+                padding: 0 16px;
+                @include fluid-text(24, 20);
+                font-weight: 700;
+                letter-spacing: -0.03em;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 4px;
+                    height: 100%;
+                    background: var(--color-blue);
+                }
+            }
+        }
+    }
+}

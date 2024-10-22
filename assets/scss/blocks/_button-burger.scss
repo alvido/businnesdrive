@@ -1,0 +1,90 @@
+.burger {
+    @include reset-button;
+    @include squere(48px);
+    @include flex-center;
+    position: relative;
+    z-index: 2;
+
+    @include phone {
+        @include squere(32px);
+    }
+
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        width: 32px;
+        height: 2px;
+        background: var(--color-white);
+        border-radius: 3px;
+
+        position: absolute;
+        left: 50%;
+        translate: -50% 0;
+        transition: all .3s ease;
+
+        @include phone {
+            width: 20px;
+        }
+    }
+
+    &::before {
+        top: 12px;
+
+        @include phone {
+            top: 8px;
+        }
+    }
+
+    &::after {
+        bottom: 12px;
+
+        @include phone {
+            bottom: 8px;
+        }
+    }
+
+    & span {
+        font-size: 0;
+        width: 32px;
+        height: 2px;
+        background: var(--color-white);
+        transition-duration: var(--transition-duration);
+
+        @include phone {
+            width: 20px;
+        }
+    }
+
+    @include hover {
+
+        &::before,
+        &::after,
+        & span {
+            background: var(--color-blue);
+        }
+    }
+
+    &.burger--active {
+
+        & span {
+            opacity: 0;
+        }
+
+        &::before,
+        &::after {
+            top: 50%;
+            bottom: auto;
+            translate: -50% -50%;
+        }
+
+        &::before {
+            rotate: 45deg;
+        }
+
+        &::after {
+            rotate: -45deg;
+
+        }
+    }
+}

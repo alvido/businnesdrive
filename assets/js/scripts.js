@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (e) {
       burgerButton.classList.remove("burger--active");
       navigation.classList.remove("navigation--active");
-      console.log("link", link);
+      body.classList.remove("lock");
     });
   });
 
@@ -89,9 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //swiper
 document.addEventListener("DOMContentLoaded", function () {
-  // Проверяем наличие элементов Swiper на странице
-  if (document.querySelector("#consistSwiper")) {
-    new Swiper("#consistSwiper", {
+  // Проверяем наличие элемента с ID "consistSwiper"
+  const consistSwiperElement = document.querySelector("#consistSwiper");
+  if (consistSwiperElement) {
+    // Инициализация Swiper для элемента "consistSwiper"
+    new Swiper(consistSwiperElement, {
       observer: true,
       observeParents: true,
       loop: true,
@@ -123,9 +125,16 @@ document.addEventListener("DOMContentLoaded", function () {
   let swiperInstance;
 
   function initSwiper() {
+    const swiperContainer = document.querySelector("#teamSwiper");
+    if (!swiperContainer) {
+      console.log("Element #teamSwiper не найден!"); // Лог в консоль для отладки
+      return; // Выходим из функции, если элемент не найден
+    }
+
+    // Если ширина окна меньше 768px, инициализируем Swiper
     if (window.innerWidth < 768) {
       if (!swiperInstance) {
-        swiperInstance = new Swiper("#teamSwiper", {
+        swiperInstance = new Swiper(swiperContainer, {
           observer: true,
           observeParents: true,
           loop: true,
@@ -146,21 +155,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     } else {
+      // Уничтожаем Swiper, если окно шире 768px
       if (swiperInstance) {
-        swiperInstance.destroy(true, true); // Отключить Swiper
+        swiperInstance.destroy(true, true);
         swiperInstance = null;
       }
     }
   }
 
-  // Инициализация при загрузке
-  initSwiper();
-
-  // Перепроверка при изменении размеров окна
-  window.addEventListener("resize", function () {
-    initSwiper();
-  });
-
+  // Инициализация Swiper для #teamSwiper при загрузке страницы, если элемент существует
+  const teamSwiperElement = document.querySelector("#teamSwiper");
+  if (teamSwiperElement) {
+    initSwiper(); // Инициализация при загрузке
+    window.addEventListener("resize", function () {
+      initSwiper(); // Инициализация при изменении размера окна
+    });
+  } else {
+  }
 });
 // swiper
 
@@ -286,13 +297,37 @@ document.addEventListener("DOMContentLoaded", function () {
 //
 
 // select2
-// In your Javascript (external .js resource or <script> tag)
 $(document).ready(function () {
-  if (typeof $.fn.select2 !== "undefined") {
-    $(".select__input").select2({
-      minimumResultsForSearch: Infinity,
-    });
+  function initializeSelect2() {
+    if (typeof $.fn.select2 !== "undefined") {
+      // Проверяем, мобильное устройство или нет
+      if (window.innerWidth > 768) {
+        // Инициализируем Select2 только на десктопе
+        $(".select__input").each(function () {
+          if (!$(this).data('select2')) { // Проверяем, инициализирован ли Select2
+            $(this).select2({
+              minimumResultsForSearch: Infinity,
+            });
+          }
+        });
+      } else {
+        // Если на мобильном устройстве, используем нативный select
+        $('.select__input').each(function () {
+          if ($(this).data('select2')) { // Проверяем, инициализирован ли Select2
+            $(this).select2('destroy'); // Отключаем Select2 на мобильных
+          }
+        });
+      }
+    }
   }
+
+  // Инициализируем при загрузке страницы
+  initializeSelect2();
+
+  // Инициализируем или отключаем Select2 при изменении размера окна
+  $(window).on('resize', function () {
+    initializeSelect2();
+  });
 });
 
 //
@@ -434,7 +469,7 @@ document.addEventListener("DOMContentLoaded", function () {
         quiz.classList.remove("show");
         let body = document.querySelector("body");
 
-        body.classList.add("block");
+        body.classList.remove("block");
       }
     }
 
